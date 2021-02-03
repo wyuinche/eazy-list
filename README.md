@@ -1,2 +1,2 @@
-# eazy-planner
-플래너 앱 만들기
+## eazy-list
+To Do List 앱 
