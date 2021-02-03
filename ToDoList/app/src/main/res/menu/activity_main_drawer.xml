@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_reset"
+            android:icon="@drawable/menu_reset"
+            android:title="@string/menu_reset" />
+        <item
+            android:id="@+id/nav_pay"
+            android:icon="@drawable/menu_pay"
+            android:title="@string/menu_pay" />
+        <item
+            android:id="@+id/nav_set"
+            android:icon="@drawable/menu_set"
+            android:title="@string/menu_set" />
+    </group>
+</menu>
