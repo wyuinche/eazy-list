@@ -5,7 +5,17 @@
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">100dp</dimen>
     <dimen name="fab_margin">10dp</dimen>
-    <dimen name="fab_size">90dp</dimen>
+    <dimen name="fab_size">75dp</dimen>
     <dimen name="text_margin">16dp</dimen>
     <dimen name="app_name_size">30dp</dimen>
+
+    <dimen name="tab_height">55dp</dimen>
+
+    <dimen name="icon_size">30dp</dimen>
+
+    <dimen name="item_card_size">60dp</dimen>
+    <dimen name="item_box_padding">3dp</dimen>
+    <dimen name="item_layout_padding">5dp</dimen>
+    <dimen name="item_text_size">13sp</dimen>
+    <dimen name="item_button_size">40dp</dimen>
 </resources>

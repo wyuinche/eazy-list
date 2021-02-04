@@ -4,17 +4,16 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/menu_pay"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/menu_pay"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ToDoList.NoActionBar">
+        android:theme="@style/Theme.ToDoList.NoActionBar.Purple">
         <activity android:name=".SettingActivity"></activity>
         <activity android:name=".PayActivity" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.ToDoList.NoActionBar">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

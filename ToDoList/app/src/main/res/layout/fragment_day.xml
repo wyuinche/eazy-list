@@ -1,11 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
     android:orientation="vertical">
-    <TextView
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="day" />
+        android:orientation="vertical">
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tab_height"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.blueshadow.todolist.ui.button.LeftButton
+                android:id="@+id/day_leftButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/left_off" />
+
+            <TextView
+                android:id="@+id/day_dateTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:gravity="center"
+                android:text="yyyy / MM/ dd" />
+
+            <com.blueshadow.todolist.ui.button.RightButton
+                android:id="@+id/day_rightButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/right_off" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/day_listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="end|bottom">
+
+        <com.blueshadow.todolist.ui.button.AddButton
+            android:id="@+id/day_addButton"
+            android:layout_width="@dimen/fab_size"
+            android:layout_height="@dimen/fab_size"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@drawable/add_off"
+            android:scaleType="centerInside"
+            />
+        <com.blueshadow.todolist.ui.button.CheckButton
+            android:id="@+id/day_checkButton"
+            android:layout_width="@dimen/fab_size"
+            android:layout_height="@dimen/fab_size"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@drawable/check_off"
+            android:scaleType="centerInside" />
+    </LinearLayout>
+</FrameLayout>

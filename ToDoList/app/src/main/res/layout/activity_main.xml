@@ -21,7 +21,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimaryVariant"
+                android:background="?attr/colorOnSurface"
                 app:popupTheme="@style/Theme.ToDoList.PopupOverlay" />
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -31,37 +31,30 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            />
+            android:background="?attr/colorSurface"
+            android:layout_marginBottom="@dimen/tab_height">
+
+        </androidx.fragment.app.FragmentContainerView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_gravity="bottom"
-            >
-
-            <com.blueshadow.todolist.ui.CheckButton
-                android:id="@+id/checkButton"
-                android:layout_width="@dimen/fab_size"
-                android:layout_height="@dimen/fab_size"
-                android:layout_gravity="right"
-                android:layout_margin="@dimen/fab_margin"
-                android:scaleType="centerInside"
-                />
+            android:layout_gravity="bottom">
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/tab_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/tab_height"
                 android:layout_marginHorizontal="0dp"
                 app:itemTextColor="@drawable/tab_item"
                 app:itemIconTint="@drawable/tab_item"
                 app:menu="@menu/activity_main_tab"
-                android:background="?attr/colorPrimaryVariant"
+                android:background="?attr/colorOnSurface"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
                 >
             </com.google.android.material.bottomnavigation.BottomNavigationView>
         </LinearLayout>
-
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
@@ -73,5 +66,8 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer"
+        app:itemTextColor="@drawable/nav_icon"
+        app:itemIconTint="@drawable/nav_icon"
+        app:itemIconSize="@dimen/icon_size"
         />
 </androidx.drawerlayout.widget.DrawerLayout>

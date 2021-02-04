@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity
 
     DrawerLayout drawer;
     Toolbar toolbar;
-    ImageView checkButton;
 
     Fragment dayFragment;
     Fragment weekFragment;
@@ -53,14 +52,6 @@ public class MainActivity extends AppCompatActivity
         toolbar.setTitle(dateFormat.format(new Date()));
         setSupportActionBar(toolbar);
 
-        checkButton = findViewById(R.id.checkButton);
-        checkButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
         drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -70,6 +61,12 @@ public class MainActivity extends AppCompatActivity
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        manager = getSupportFragmentManager();
+
+        dayFragment = new DayFragment();
+        weekFragment = new WeekFragment();
+        monthFragment = new MonthFragment();
+
         tab = findViewById(R.id.tab_view);
         tab.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -77,12 +74,6 @@ public class MainActivity extends AppCompatActivity
                 return onTabPressed(item.getItemId());
             }
         });
-
-        manager = getSupportFragmentManager();
-
-        dayFragment = new DayFragment();
-        weekFragment = new WeekFragment();
-        monthFragment = new MonthFragment();
 
         manager.beginTransaction().add(R.id.container, dayFragment).commit();
     }
