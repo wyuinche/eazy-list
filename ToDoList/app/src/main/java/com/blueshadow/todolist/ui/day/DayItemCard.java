@@ -6,6 +6,9 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,7 +22,6 @@ public class DayItemCard extends LinearLayout{
     public boolean itemDone = false;
     public ImageView card;
     public TextView textView;
-    public ImageView removeButton;
 
     public DayItemCard(@NonNull Context context){
         super(context);
@@ -34,24 +36,19 @@ public class DayItemCard extends LinearLayout{
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
     }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        int action = event.getAction();
-        switch(action){
-            case MotionEvent.ACTION_DOWN:
-                if(itemDone == true){
-                    setItemDone(false);
-                }
-                else{
-                    setItemDone(true);
-                }
-
-                break;
-        }
-        invalidate();
-        return true;
-    }
+//
+//    @Override
+//    public boolean onTouchEvent(MotionEvent event) {
+//        if(event.getAction() == MotionEvent.ACTION_DOWN){
+//            if(itemDone == true){
+//                setItemDone(false);
+//            }
+//            else{
+//                setItemDone(true);
+//            }
+//        }
+//        return true;
+//    }
 
     private void init(Context context){
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -59,10 +56,10 @@ public class DayItemCard extends LinearLayout{
 
         card = findViewById(R.id.itemBox);
         textView = findViewById(R.id.itemTextView);
-        removeButton = findViewById(R.id.itemRemoveButton);
 
         textView.setText("");
         setItemDone(false);
+
     }
 
     private void setItemDone(boolean done){
@@ -81,4 +78,6 @@ public class DayItemCard extends LinearLayout{
     public void setText(String text){
         textView.setText(text);
     }
+    public String getText(){ return textView.getText().toString(); }
+
 }

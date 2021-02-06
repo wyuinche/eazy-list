@@ -1,6 +1,7 @@
 package com.blueshadow.todolist.ui;
 
 public class ToDoItem {
+    int id;
     String date;
     String memo;
     boolean done;

@@ -15,5 +15,7 @@
     <string name="tab_week">week</string>
     <string name="tab_month">month</string>
 
-    <string name="enter">enter...</string>
+    <string name="item_add_title">New Item</string>
+    <string name="item_add_ok">add</string>
+    <string name="item_add_cancel">cancel</string>
 </resources>

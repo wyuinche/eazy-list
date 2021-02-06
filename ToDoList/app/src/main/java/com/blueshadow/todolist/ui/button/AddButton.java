@@ -25,17 +25,17 @@ public class AddButton extends androidx.appcompat.widget.AppCompatImageView {
         setImageResource(R.drawable.add_off);
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        switch(event.getAction()){
-            case MotionEvent.ACTION_DOWN:
-                setImageResource(R.drawable.add_on);
-                return true;
-            case MotionEvent.ACTION_OUTSIDE:
-            case MotionEvent.ACTION_UP:
-                setImageResource(R.drawable.add_off);
-                return true;
-        }
-        return false;
-    }
+//    @Override
+//    public boolean onTouchEvent(MotionEvent event) {
+//        switch(event.getAction()){
+//            case MotionEvent.ACTION_DOWN:
+//                setImageResource(R.drawable.add_on);
+//                break;
+//            case MotionEvent.ACTION_OUTSIDE:
+//            case MotionEvent.ACTION_UP:
+//                setImageResource(R.drawable.add_off);
+//                break;
+//        }
+//        return true;
+//    }
 }

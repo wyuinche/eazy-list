@@ -1,12 +1,11 @@
 package com.blueshadow.todolist;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
 
+import com.blueshadow.todolist.ui.day.Day;
 import com.blueshadow.todolist.ui.day.DayFragment;
 import com.blueshadow.todolist.ui.month.MonthFragment;
 import com.blueshadow.todolist.ui.week.WeekFragment;
@@ -26,7 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener, OnItemChangedListener {
     final static int REQUEST_CODE_PAY = 101;
     final static int REQUEST_CODE_SETTING = 102;
     final static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy / MM / dd");
@@ -42,6 +41,9 @@ public class MainActivity extends AppCompatActivity
     FragmentManager manager;
 
     BottomNavigationView tab;
+
+    SQLiteDatabase db;
+    ListDatabaseHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,9 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         manager = getSupportFragmentManager();
+
+        helper = new ListDatabaseHelper(getApplicationContext());
+        db = helper.getWritableDatabase();
 
         dayFragment = new DayFragment();
         weekFragment = new WeekFragment();
@@ -121,4 +126,54 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    @Override
+    public void onItemInsert(Day day, String memo) {
+        if(db == null){
+            return;
+        }
+        String dateY = "" + day.getYear();
+        String dateM = "" + day.getMonth();
+        String dateD = "" + day.getDay();
+        int date = 0;
+
+        if(dateM.length() < 2){
+            dateM = "0" + dateM;
+        }
+        if(dateD.length() < 2){
+            dateD = "0" + dateD;
+        }
+
+        date = Integer.parseInt(dateY + dateM + dateD);
+
+        db.execSQL("insert into "
+                + helper.TABLE_NAME
+                + " (" + helper.COLUMN_NAMES[0] + ", "
+                + helper.COLUMN_NAMES[1] + ", "
+                + helper.COLUMN_NAMES[0] + ")"
+                + " values "
+                + " (" + date + ", '" + memo + "', 0)"
+        );
+
+
+    }
+
+    @Override
+    public void onItemDelete(int id) {
+        db.execSQL("delete from " + helper.TABLE_NAME
+                + " where _id = " + id);
+    }
+
+    @Override
+    public void onItemUpdate(int id, String memo, boolean done) {
+        int isDone = 0;
+        if(done == true){
+            isDone = 1;
+        }
+        db.execSQL("update " + helper.TABLE_NAME
+                + " set "
+                + helper.COLUMN_NAMES[1] + " = " + memo + ", "
+                + helper.COLUMN_NAMES[2] + " = " + isDone
+                + " where _id = " + id
+        );
+    }
 }

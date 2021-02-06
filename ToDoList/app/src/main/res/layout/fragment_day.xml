@@ -48,7 +48,10 @@
         <ListView
             android:id="@+id/day_listView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:dividerHeight="@dimen/item_divider_height"
+            android:divider="@color/transparent"
+            />
 
     </LinearLayout>
 
@@ -66,12 +69,5 @@
             android:src="@drawable/add_off"
             android:scaleType="centerInside"
             />
-        <com.blueshadow.todolist.ui.button.CheckButton
-            android:id="@+id/day_checkButton"
-            android:layout_width="@dimen/fab_size"
-            android:layout_height="@dimen/fab_size"
-            android:layout_margin="@dimen/fab_margin"
-            android:src="@drawable/check_off"
-            android:scaleType="centerInside" />
     </LinearLayout>
 </FrameLayout>

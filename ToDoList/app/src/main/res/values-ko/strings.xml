@@ -15,5 +15,7 @@
     <string name="tab_week">week</string>
     <string name="tab_month">month</string>
 
-    <string name="enter">입력...</string>
+    <string name="item_add_title">새 목록 작성</string>
+    <string name="item_add_ok">추가</string>
+    <string name="item_add_cancel">취소</string>
 </resources>

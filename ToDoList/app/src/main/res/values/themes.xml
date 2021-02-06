@@ -19,6 +19,9 @@
         <item name="colorControlNormal">@color/gray_500</item>
         <item name="colorControlHighlight">@color/gray_700</item>
 
+        <item name="colorOnBackground">@color/purple_200_trans</item>
+        <item name="colorBackgroundFloating">@color/purple_400_trans</item>
+
         <item name="android:colorControlHighlight">@color/purple_500</item>
     </style>
 

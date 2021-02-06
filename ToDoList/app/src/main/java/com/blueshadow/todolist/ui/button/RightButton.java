@@ -30,12 +30,12 @@ public class RightButton extends androidx.appcompat.widget.AppCompatImageView {
         switch(event.getAction()){
             case MotionEvent.ACTION_DOWN:
                 setImageResource(R.drawable.right_on);
-                return true;
+                break;
             case MotionEvent.ACTION_OUTSIDE:
             case MotionEvent.ACTION_UP:
                 setImageResource(R.drawable.right_off);
-                return true;
+                break;
         }
-        return false;
+        return true;
     }
 }

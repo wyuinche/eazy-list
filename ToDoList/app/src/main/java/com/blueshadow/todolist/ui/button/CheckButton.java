@@ -30,12 +30,12 @@ public class CheckButton extends androidx.appcompat.widget.AppCompatImageView {
         switch(event.getAction()){
             case MotionEvent.ACTION_DOWN:
                 setImageResource(R.drawable.check_on);
-                return true;
+                break;
             case MotionEvent.ACTION_OUTSIDE:
             case MotionEvent.ACTION_UP:
                 setImageResource(R.drawable.check_off);
-                return true;
+                break;
         }
-        return false;
+        return true;
     }
 }
