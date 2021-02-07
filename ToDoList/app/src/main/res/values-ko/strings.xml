@@ -18,4 +18,13 @@
     <string name="item_add_title">새 목록 작성</string>
     <string name="item_add_ok">추가</string>
     <string name="item_add_cancel">취소</string>
+
+    <string name="sunday">일</string>
+    <string name="monday">월</string>
+    <string name="tuesday">화</string>
+    <string name="wednesday">수</string>
+    <string name="thursday">목</string>
+    <string name="friday">금</string>
+    <string name="saturday">토</string>
+    <string name="Null">띠용ㅜㅠ</string>
 </resources>

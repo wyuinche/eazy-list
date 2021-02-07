@@ -6,7 +6,6 @@
     android:background="?attr/colorSurface"
     android:orientation="vertical">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,7 +17,7 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <com.blueshadow.todolist.ui.button.LeftButton
+            <ImageView
                 android:id="@+id/day_leftButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -33,9 +32,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="4"
                 android:gravity="center"
-                android:text="yyyy / MM/ dd" />
+                android:text="yyyy / MM / dd" />
 
-            <com.blueshadow.todolist.ui.button.RightButton
+            <ImageView
                 android:id="@+id/day_rightButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -49,7 +48,7 @@
             android:id="@+id/day_listView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:dividerHeight="@dimen/item_divider_height"
+            android:dividerHeight="@dimen/item_day_divider_height"
             android:divider="@color/transparent"
             />
 
@@ -61,7 +60,7 @@
         android:orientation="horizontal"
         android:layout_gravity="end|bottom">
 
-        <com.blueshadow.todolist.ui.button.AddButton
+        <ImageView
             android:id="@+id/day_addButton"
             android:layout_width="@dimen/fab_size"
             android:layout_height="@dimen/fab_size"

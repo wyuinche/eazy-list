@@ -17,11 +17,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.blueshadow.todolist.R;
+import com.blueshadow.todolist.ui.ToDoItem;
 
 public class DayItemCard extends LinearLayout{
     public boolean itemDone = false;
     public ImageView card;
     public TextView textView;
+
+    public ToDoItem item;
 
     public DayItemCard(@NonNull Context context){
         super(context);
@@ -36,19 +39,19 @@ public class DayItemCard extends LinearLayout{
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
     }
-//
-//    @Override
-//    public boolean onTouchEvent(MotionEvent event) {
-//        if(event.getAction() == MotionEvent.ACTION_DOWN){
-//            if(itemDone == true){
-//                setItemDone(false);
-//            }
-//            else{
-//                setItemDone(true);
-//            }
-//        }
-//        return true;
-//    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if(event.getAction() == MotionEvent.ACTION_DOWN){
+            if(itemDone == true){
+                setItemDone(false);
+            }
+            else{
+                setItemDone(true);
+            }
+        }
+        return false;
+    }
 
     private void init(Context context){
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -59,7 +62,6 @@ public class DayItemCard extends LinearLayout{
 
         textView.setText("");
         setItemDone(false);
-
     }
 
     private void setItemDone(boolean done){
@@ -80,4 +82,12 @@ public class DayItemCard extends LinearLayout{
     }
     public String getText(){ return textView.getText().toString(); }
 
+    public String getDate(){ return item.getDate(); }
+
+    public void createItem(ToDoItem item){
+        this.item = item;
+    }
+    public ToDoItem getItem(){
+        return item;
+    }
 }

@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class ListDatabaseHelper extends SQLiteOpenHelper {
     public static String NAME = "ToDoList.db";
     public static String TABLE_NAME = "ItemList";
-    public static String[] COLUMN_NAMES = {"date", "memo", "done"};
+    public static String[] COLUMN_NAMES = {"_id", "date", "memo", "done"};
     public static int VERSION = 1;
 
     public ListDatabaseHelper(Context context) {
@@ -17,7 +17,7 @@ public class ListDatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createDB = "create table if not exists " + TABLE_NAME + "("
-                + " _id INTEGER PRIMARY KEY autoincrement, "
+                + " _id INTEGER PRIMARY KEY, "
                 + " date INTEGER, "
                 + " memo TEXT, "
                 + " done INTEGER)";

@@ -9,7 +9,12 @@
         android:roundIcon="@drawable/menu_pay"
         android:supportsRtl="true"
         android:theme="@style/Theme.ToDoList.NoActionBar.Purple">
-        <activity android:name=".SettingActivity"></activity>
+        <service
+            android:name=".SaveDateService"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <activity android:name=".SettingActivity" />
         <activity android:name=".PayActivity" />
         <activity
             android:name=".MainActivity"

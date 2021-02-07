@@ -19,8 +19,6 @@ import java.util.ArrayList;
 
 public class DayItemCardAdapter extends BaseAdapter {
     Context context = null;
-    private TextView textView;
-    private ImageView cancelButton;
     private ArrayList<DayItemCard> items = new ArrayList<>();
 
     public DayItemCardAdapter(Context context) {
