@@ -16,8 +16,11 @@
     <string name="tab_month">month</string>
 
     <string name="item_add_title">New Item</string>
+    <string name="item_add_day_selection_title">Select Day</string>
     <string name="item_add_ok">add</string>
     <string name="item_add_cancel">cancel</string>
+    <string name="item_add_day_select">next</string>
+    <string name="item_add_hint">enter...</string>
 
     <string name="sunday">SUN</string>
     <string name="monday">MON</string>
@@ -27,4 +30,5 @@
     <string name="friday">FRI</string>
     <string name="saturday">SAT</string>
     <string name="Null">Null</string>
+
 </resources>

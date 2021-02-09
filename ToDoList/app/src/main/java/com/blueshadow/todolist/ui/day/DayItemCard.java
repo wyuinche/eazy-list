@@ -6,9 +6,6 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -55,7 +52,7 @@ public class DayItemCard extends LinearLayout{
 
     private void init(Context context){
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.day_item_card, this, true);
+        inflater.inflate(R.layout.day_item_card_base, this, true);
 
         card = findViewById(R.id.itemBox);
         textView = findViewById(R.id.itemTextView);

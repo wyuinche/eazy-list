@@ -38,6 +38,9 @@ public class ListDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-
+    public void onReset(SQLiteDatabase db){
+        db.execSQL("DROP TABLE IF EXISTS emp");
+        onCreate(db);
+    }
 }
 

@@ -1,44 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="@dimen/item_layout_padding">
+    android:orientation="horizontal">
 
-    <androidx.cardview.widget.CardView
+    <com.blueshadow.todolist.ui.day.DayItemCard
+        android:id="@+id/itemCard"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="1dp"
-        android:background="?android:attr/selectableItemBackground">
+        android:layout_height="wrap_content" />
 
-        <ImageView
-            android:id="@+id/itemBox"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/item_card_size"
-            android:padding="@dimen/item_box_padding"
-            android:src="@drawable/item_box_incomplete" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/itemTextView"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:padding="@dimen/text_margin"
-                android:text="TextView"
-                android:layout_weight="6"
-                android:gravity="center"
-                android:textColor="?attr/colorControlActivated"
-                android:textSize="@dimen/item_text_size" />
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-</LinearLayout>
+</FrameLayout>

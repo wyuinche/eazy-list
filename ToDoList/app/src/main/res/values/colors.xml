@@ -20,9 +20,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="beige">#FFFFFFF0</color>
+    <color name="red">#FFDB4455</color>
     <color name="transparent">#00FFFFFF</color>
 
-    <color name="gray_100">#ECE6CC</color>
+    <color name="gray_100">#FFECE6CC</color>
     <color name="gray_200">#FFC0BCA7</color>
     <color name="gray_500">#FF6F6C61</color>
     <color name="gray_700">#FF272623</color>

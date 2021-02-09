@@ -5,7 +5,7 @@
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">100dp</dimen>
     <dimen name="fab_margin">10dp</dimen>
-    <dimen name="fab_size">75dp</dimen>
+    <dimen name="fab_size">60dp</dimen>
     <dimen name="text_margin">16dp</dimen>
     <dimen name="app_name_size">30dp</dimen>
 
@@ -16,13 +16,20 @@
     <dimen name="item_card_size">60dp</dimen>
     <dimen name="item_box_padding">3dp</dimen>
     <dimen name="item_layout_padding">5dp</dimen>
-    <dimen name="item_text_size">13sp</dimen>
+    <dimen name="item_text_size">15sp</dimen>
     <dimen name="item_button_size">40dp</dimen>
 
     <dimen name="item_day_divider_height">4dp</dimen>
     <dimen name="item_week_divider_height">2dp</dimen>
     <dimen name="item_month_divider_height">1dp</dimen>
 
-    <dimen name="item_week_text_padding">2dp</dimen>
-    <dimen name="item_box_week_text_size">10sp</dimen>
+    <dimen name="item_week_text_padding">1dp</dimen>
+    <dimen name="item_box_week_margin">1dp</dimen>
+    <dimen name="item_box_week_text_size">12sp</dimen>
+    <dimen name="item_box_week_height">40dp</dimen>
+
+    <dimen name="item_box_month_padding">1dp</dimen>
+    <dimen name="item_box_month_inside_margin">1dp</dimen>
+    <dimen name="item_month_text_padding">1dp</dimen>
+    <dimen name="item_box_month_text_size">12sp</dimen>
 </resources>

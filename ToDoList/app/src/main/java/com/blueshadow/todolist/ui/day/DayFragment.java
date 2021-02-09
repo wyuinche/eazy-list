@@ -19,23 +19,24 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.blueshadow.todolist.DateController;
 import com.blueshadow.todolist.OnItemAndDateChangedListener;
 import com.blueshadow.todolist.R;
 import com.blueshadow.todolist.ui.ToDoItem;
 
 import java.util.Calendar;
 
-public class DayFragment extends Fragment{
-    private Calendar today;
+public class DayFragment extends Fragment implements DateController {
     private Calendar curDay;
 
-    TextView dateTextView;
-    ImageView leftButton;
-    ImageView rightButton;
-    ImageView addButton;
+    private TextView dateTextView;
+    private ImageView leftButton;
+    private ImageView rightButton;
+    private ImageView addButton;
+    private ImageView backButton;
 
-    ListView listView;
-    DayItemCardAdapter adapter;
+    private ListView listView;
+    private DayItemCardAdapter adapter;
 
     private OnItemAndDateChangedListener listener;
 
@@ -63,13 +64,13 @@ public class DayFragment extends Fragment{
     @Override
     public void onPause() {
         super.onPause();
-        listener.setDayCurrentCalendar(curDay);
+        listener.setCurrentCalendar(listener.DAY_FRAGMENT, curDay);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        curDay = listener.getDayCurrentCalendar();
+        curDay = listener.getCurrentCalendar(listener.DAY_FRAGMENT);
     }
 
     @Override
@@ -78,8 +79,7 @@ public class DayFragment extends Fragment{
         View view = (View) inflater.inflate(R.layout.fragment_day, container, false);
         setListeners(view);
 
-        today = listener.getTodayCalendar();
-        curDay = listener.getDayCurrentCalendar();
+        curDay = listener.getCurrentCalendar(listener.DAY_FRAGMENT);
         setDateTitle(curDay);
 
         adapter = new DayItemCardAdapter(getContext());
@@ -98,27 +98,51 @@ public class DayFragment extends Fragment{
         return view;
     }
 
-    private void setDateTitle(Calendar cal){
+    @Override
+    public void setDateTitle(Calendar cal){
         dateTextView.setText(cal.get(Calendar.YEAR) + " / " + (cal.get(Calendar.MONTH)+1) + " / "
                 + cal.get(Calendar.DATE) + " (" + listener.getWeekdayString(cal.get(Calendar.DAY_OF_WEEK)) + ")");
     }
 
-    private void setListeners(View view){
+    @Override
+    public void findView(View view){
         dateTextView = view.findViewById(R.id.day_dateTextView);
         leftButton = view.findViewById(R.id.day_leftButton);
         rightButton = view.findViewById(R.id.day_rightButton);
         addButton = view.findViewById(R.id.day_addButton);
+        backButton = view.findViewById(R.id.day_backButton);
+    }
+
+    @Override
+    public void setListeners(View view){
+        findView(view);
 
         addButton.setOnTouchListener(new View.OnTouchListener(){
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch(event.getAction()){
                     case MotionEvent.ACTION_DOWN:
-                        addButton.setImageResource(R.drawable.add_on);
+                        addButton.setImageResource(R.drawable.ic_add_on);
                         return true;
                     case MotionEvent.ACTION_UP:
-                        addButton.setImageResource(R.drawable.add_off);
+                        addButton.setImageResource(R.drawable.ic_add_off);
                         addTask();
+                        return true;
+                }
+                return false;
+            }
+        });
+
+        backButton.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch(event.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        backButton.setImageResource(R.drawable.ic_back_today_on);
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        backButton.setImageResource(R.drawable.ic_back_today_off);
+                        backToday();
                         return true;
                 }
                 return false;
@@ -130,11 +154,11 @@ public class DayFragment extends Fragment{
             public boolean onTouch(View v, MotionEvent event) {
                 switch(event.getAction()){
                     case MotionEvent.ACTION_DOWN:
-                        leftButton.setImageResource(R.drawable.left_on);
+                        leftButton.setImageResource(R.drawable.ic_left_on);
                         return true;
                     case MotionEvent.ACTION_UP:
                         changeDate(-1);
-                        leftButton.setImageResource(R.drawable.left_off);
+                        leftButton.setImageResource(R.drawable.ic_left_off);
                         return true;
                 }
                 return false;
@@ -146,11 +170,11 @@ public class DayFragment extends Fragment{
             public boolean onTouch(View v, MotionEvent event) {
                 switch(event.getAction()){
                     case MotionEvent.ACTION_DOWN:
-                        rightButton.setImageResource(R.drawable.right_on);
+                        rightButton.setImageResource(R.drawable.ic_right_on);
                         return true;
                     case MotionEvent.ACTION_UP:
                         changeDate(1);
-                        rightButton.setImageResource(R.drawable.right_off);
+                        rightButton.setImageResource(R.drawable.ic_right_off);
                         return true;
                 }
                 return false;
@@ -158,12 +182,14 @@ public class DayFragment extends Fragment{
         });
     }
 
-    private void addTask(){
+    @Override
+    public void addTask(){
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         EditText itemAddEditText = new EditText(getContext());
         itemAddEditText.setMaxEms(15);
         itemAddEditText.setMaxLines(1);
         itemAddEditText.setLines(1);
+        itemAddEditText.setHint(R.string.item_add_hint);
         builder.setTitle(getString(R.string.item_add_title));
         builder.setView(itemAddEditText);
         builder.setPositiveButton(getString(R.string.item_add_ok),
@@ -198,7 +224,14 @@ public class DayFragment extends Fragment{
         dialog.show();
     }
 
-    private void changeDate(int dd){
+    @Override
+    public void backToday(){
+        curDay = Calendar.getInstance();
+        setDateTitle(curDay);
+    }
+
+    @Override
+    public void changeDate(int dd){
         curDay.add(Calendar.DATE, dd);
         setDateTitle(curDay);
     }

@@ -24,7 +24,7 @@
                 android:layout_weight="1"
                 android:background="@color/transparent"
                 android:scaleType="centerInside"
-                android:src="@drawable/left_off" />
+                android:src="@drawable/ic_left_off" />
 
             <TextView
                 android:id="@+id/day_dateTextView"
@@ -41,7 +41,7 @@
                 android:layout_weight="1"
                 android:background="@color/transparent"
                 android:scaleType="centerInside"
-                android:src="@drawable/right_off" />
+                android:src="@drawable/ic_right_off" />
         </LinearLayout>
 
         <ListView
@@ -61,11 +61,20 @@
         android:layout_gravity="end|bottom">
 
         <ImageView
+            android:id="@+id/day_backButton"
+            android:layout_width="@dimen/fab_size"
+            android:layout_height="@dimen/fab_size"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@drawable/ic_back_today_off"
+            android:scaleType="centerInside"
+            />
+
+        <ImageView
             android:id="@+id/day_addButton"
             android:layout_width="@dimen/fab_size"
             android:layout_height="@dimen/fab_size"
             android:layout_margin="@dimen/fab_margin"
-            android:src="@drawable/add_off"
+            android:src="@drawable/ic_add_off"
             android:scaleType="centerInside"
             />
     </LinearLayout>

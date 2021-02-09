@@ -37,20 +37,18 @@ public class MainActivity extends AppCompatActivity
     final public static String PREF_NAME = "CUR_ID";
 
     NavigationView navigationView;
-
     DrawerLayout drawer;
     Toolbar toolbar;
+
+    BottomNavigationView tab;
 
     Fragment dayFragment;
     Fragment weekFragment;
     Fragment monthFragment;
     FragmentManager manager;
-    Calendar cal;
     Calendar dayCal;
     Calendar weekCal;
     Calendar monthCal;
-
-    BottomNavigationView tab;
 
     SQLiteDatabase db;
     ListDatabaseHelper helper;
@@ -64,7 +62,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        cal = Calendar.getInstance();
         dayCal = Calendar.getInstance();
         weekCal = Calendar.getInstance();
         monthCal = Calendar.getInstance();
@@ -75,7 +72,7 @@ public class MainActivity extends AppCompatActivity
 
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(dateFormat.format(new Date()) + " ("
-                + getWeekdayString(cal.get(Calendar.DAY_OF_WEEK)) + ")");
+                + getWeekdayString(getTodayCalendar().get(Calendar.DAY_OF_WEEK)) + ")");
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
@@ -141,19 +138,19 @@ public class MainActivity extends AppCompatActivity
     @Override
     public String getWeekdayString(int wd){
         switch(wd){
-            case 1:
+            case Calendar.SUNDAY:
                 return getString(R.string.sunday);
-            case 2:
+            case Calendar.MONDAY:
                 return getString(R.string.monday);
-            case 3:
+            case Calendar.TUESDAY:
                 return getString(R.string.tuesday);
-            case 4:
+            case Calendar.WEDNESDAY:
                 return getString(R.string.wednesday);
-            case 5:
+            case Calendar.THURSDAY:
                 return getString(R.string.thursday);
-            case 6:
+            case Calendar.FRIDAY:
                 return getString(R.string.friday);
-            case 7:
+            case Calendar.SATURDAY:
                 return getString(R.string.saturday);
         }
         return getString(R.string.Null);
@@ -231,7 +228,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public Calendar getTodayCalendar() {
-        return cal;
+        return Calendar.getInstance();
     }
 
     @Override
@@ -251,12 +248,30 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void setDayCurrentCalendar(Calendar calendar) {
-        dayCal = calendar;
+    public void setCurrentCalendar(int fragm, Calendar calendar) {
+        switch(fragm){
+            case DAY_FRAGMENT:
+                dayCal = calendar;
+                break;
+            case WEEK_FRAGMENT:
+                weekCal = calendar;
+                break;
+            case MONTH_FRAGMENT:
+                monthCal = calendar;
+        }
     }
 
     @Override
-    public Calendar getDayCurrentCalendar() {
-        return dayCal;
+    public Calendar getCurrentCalendar(int fragm) {
+        switch(fragm){
+            case DAY_FRAGMENT:
+                return dayCal;
+            case WEEK_FRAGMENT:
+                return weekCal;
+            case MONTH_FRAGMENT:
+                return monthCal;
+            default:
+                return getTodayCalendar();
+        }
     }
 }

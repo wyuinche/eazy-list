@@ -1,17 +1,11 @@
 package com.blueshadow.todolist.ui.day;
 
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.blueshadow.todolist.R;
 
@@ -43,7 +37,7 @@ public class DayItemCardAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View v = (FrameLayout) inflater.inflate(R.layout.item_card, null);
+        View v = (FrameLayout) inflater.inflate(R.layout.day_item_card, null);
 
         DayItemCard item = v.findViewById(R.id.itemCard);
         item.setText(items.get(position).getText());

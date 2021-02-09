@@ -16,8 +16,11 @@
     <string name="tab_month">month</string>
 
     <string name="item_add_title">새 목록 작성</string>
+    <string name="item_add_day_selection_title">요일 선택</string>
     <string name="item_add_ok">추가</string>
     <string name="item_add_cancel">취소</string>
+    <string name="item_add_day_select">다음</string>
+    <string name="item_add_hint">입력...</string>
 
     <string name="sunday">일</string>
     <string name="monday">월</string>
@@ -27,4 +30,5 @@
     <string name="friday">금</string>
     <string name="saturday">토</string>
     <string name="Null">띠용ㅜㅠ</string>
+
 </resources>
