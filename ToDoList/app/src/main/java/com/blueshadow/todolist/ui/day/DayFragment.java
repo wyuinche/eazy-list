@@ -157,7 +157,7 @@ public class DayFragment extends Fragment implements DateController {
                         leftButton.setImageResource(R.drawable.ic_left_on);
                         return true;
                     case MotionEvent.ACTION_UP:
-                        changeDate(-1);
+                        changeDate(Calendar.DATE, -1);
                         leftButton.setImageResource(R.drawable.ic_left_off);
                         return true;
                 }
@@ -173,7 +173,7 @@ public class DayFragment extends Fragment implements DateController {
                         rightButton.setImageResource(R.drawable.ic_right_on);
                         return true;
                     case MotionEvent.ACTION_UP:
-                        changeDate(1);
+                        changeDate(Calendar.DATE, 1);
                         rightButton.setImageResource(R.drawable.ic_right_off);
                         return true;
                 }
@@ -231,8 +231,8 @@ public class DayFragment extends Fragment implements DateController {
     }
 
     @Override
-    public void changeDate(int dd){
-        curDay.add(Calendar.DATE, dd);
+    public void changeDate(int field, int dd){
+        curDay.add(field, dd);
         setDateTitle(curDay);
     }
 }

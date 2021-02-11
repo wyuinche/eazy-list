@@ -9,7 +9,7 @@ public interface DateController {
     public void setListeners(View view);
 
     public void setDateTitle(Calendar cal);
-    public void changeDate(int dd);
+    public void changeDate(int field, int dd);
     public void backToday();
 
     public void addTask();

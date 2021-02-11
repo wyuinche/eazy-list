@@ -227,6 +227,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public int onItemCountForDate(Calendar day) {
+        return 0;
+    }
+
+    @Override
     public Calendar getTodayCalendar() {
         return Calendar.getInstance();
     }
@@ -273,5 +278,12 @@ public class MainActivity extends AppCompatActivity
             default:
                 return getTodayCalendar();
         }
+    }
+
+    @Override
+    public void goToDailyList(int year, int month, int day) {
+        dayCal.set(year, month, day);
+        setCurrentCalendar(DAY_FRAGMENT, dayCal);
+        manager.beginTransaction().replace(R.id.container, dayFragment).commit();
     }
 }

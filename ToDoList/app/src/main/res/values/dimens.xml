@@ -29,7 +29,11 @@
     <dimen name="item_box_week_height">40dp</dimen>
 
     <dimen name="item_box_month_padding">1dp</dimen>
+    <dimen name="item_box_month_margin">1dp</dimen>
+    <dimen name="item_box_month_title_margin">4dp</dimen>
     <dimen name="item_box_month_inside_margin">1dp</dimen>
+    <dimen name="item_box_month_outside_margin">2dp</dimen>
     <dimen name="item_month_text_padding">1dp</dimen>
-    <dimen name="item_box_month_text_size">12sp</dimen>
+    <dimen name="item_box_month_text_size">16sp</dimen>
+    <dimen name="item_box_month_date_text_size">12sp</dimen>
 </resources>

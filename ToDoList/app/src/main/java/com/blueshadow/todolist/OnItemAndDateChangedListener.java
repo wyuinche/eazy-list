@@ -10,6 +10,7 @@ public interface OnItemAndDateChangedListener {
     public int onItemInsert(Calendar day, String memo);
     public void onItemDelete(int id);
     public void onItemUpdate(int id, String memo, boolean done);
+    public int onItemCountForDate(Calendar day);
 
     public Calendar getTodayCalendar();
     public void setCurrentCalendar(int fragm, Calendar calendar);
@@ -17,4 +18,6 @@ public interface OnItemAndDateChangedListener {
 
     public int parseCalendarToIntDate(Calendar calendar);
     public String getWeekdayString(int wd);
+
+    public void goToDailyList(int year, int month, int day);
 }

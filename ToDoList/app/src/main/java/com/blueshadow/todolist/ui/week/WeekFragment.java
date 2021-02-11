@@ -87,11 +87,6 @@ public class WeekFragment extends Fragment implements DateController {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_week, container, false);
@@ -104,7 +99,7 @@ public class WeekFragment extends Fragment implements DateController {
         }
 
         curDay = listener.getCurrentCalendar(listener.WEEK_FRAGMENT);
-        changeDate(0);
+        changeDate(Calendar.DATE, 0);
 
         return view;
     }
@@ -188,7 +183,7 @@ public class WeekFragment extends Fragment implements DateController {
                         leftButton.setImageResource(R.drawable.ic_left_on);
                         return true;
                     case MotionEvent.ACTION_UP:
-                        changeDate(-7);
+                        changeDate(Calendar.DATE, -7);
                         leftButton.setImageResource(R.drawable.ic_left_off);
                         return true;
                 }
@@ -204,7 +199,7 @@ public class WeekFragment extends Fragment implements DateController {
                         rightButton.setImageResource(R.drawable.ic_right_on);
                         return true;
                     case MotionEvent.ACTION_UP:
-                        changeDate(7);
+                        changeDate(Calendar.DATE, 7);
                         rightButton.setImageResource(R.drawable.ic_right_off);
                         return true;
                 }
@@ -253,8 +248,8 @@ public class WeekFragment extends Fragment implements DateController {
     }
 
     @Override
-    public void changeDate(int dd) {
-        curDay.add(Calendar.DATE, dd);
+    public void changeDate(int field, int dd) {
+        curDay.add(field, dd);
         setDayOnDisplay(curDay);
         setDateTitle(curDay);
 
@@ -271,7 +266,7 @@ public class WeekFragment extends Fragment implements DateController {
     @Override
     public void backToday() {
         curDay = Calendar.getInstance();
-        changeDate(0);
+        changeDate(Calendar.DATE, 0);
     }
 
     @Override
