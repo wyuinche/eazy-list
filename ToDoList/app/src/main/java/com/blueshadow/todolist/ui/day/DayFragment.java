@@ -3,6 +3,7 @@ package com.blueshadow.todolist.ui.day;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Paint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,8 +23,11 @@ import android.widget.TextView;
 import com.blueshadow.todolist.DateController;
 import com.blueshadow.todolist.OnItemAndDateChangedListener;
 import com.blueshadow.todolist.R;
-import com.blueshadow.todolist.ui.ToDoItem;
+import com.blueshadow.todolist.ToDoItem;
+import com.blueshadow.todolist.ui.week.WeekItemCard;
+import com.blueshadow.todolist.ui.week.WeekItemCardAdapter;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class DayFragment extends Fragment implements DateController {
@@ -84,6 +88,9 @@ public class DayFragment extends Fragment implements DateController {
 
         adapter = new DayItemCardAdapter(getContext());
         listView = view.findViewById(R.id.day_listView);
+
+        setList(curDay);
+
         listView.setAdapter(adapter);
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -92,6 +99,26 @@ public class DayFragment extends Fragment implements DateController {
                 adapter.removeItem(position);
                 adapter.notifyDataSetChanged();
                 return true;
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                DayItemCard item = (DayItemCard) adapter.getItem(position);
+                TextView textView = view.findViewById(R.id.day_itemTextView);
+                if(item.getItem().isDone()){
+                    textView.setBackgroundResource(R.drawable.item_box_incomplete);
+                    textView.setPaintFlags(textView.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+                    textView.setPaintFlags(0);
+                    adapter.convertItemDone(position, false);
+                }
+                else{
+                    textView.setBackgroundResource(R.drawable.item_box_complete);
+                    textView.setPaintFlags(textView.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+                    adapter.convertItemDone(position, true);
+                }
+                listener.onItemUpdate(item.getItem().get_id(), item.getItem().getMemo(), item.getItem().isDone());
             }
         });
 
@@ -183,6 +210,19 @@ public class DayFragment extends Fragment implements DateController {
     }
 
     @Override
+    public void setList(Calendar cal) {
+        ArrayList<ToDoItem> items = listener.onItemSelect(cal);
+
+        adapter.cleanItems();
+        for(int i = 0; i < items.size(); i++){
+            DayItemCard item = new DayItemCard();
+            item.setItem(items.get(i));
+            adapter.addItem(item);
+        }
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
     public void addTask(){
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         EditText itemAddEditText = new EditText(getContext());
@@ -197,15 +237,14 @@ public class DayFragment extends Fragment implements DateController {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String memo = itemAddEditText.getText().toString();
-                        DayItemCard item = new DayItemCard(getContext());
-                        int itemId;
-                        item.setText(memo);
-                        itemId = listener.onItemInsert(curDay, memo);
+                        DayItemCard item = new DayItemCard();
 
+                        int itemId;
+                        itemId = listener.onItemInsert(curDay, memo);
                         if(itemId == -1){
                             return;
                         }
-                        item.createItem(new ToDoItem(itemId, curDay, memo));
+                        item.setItem(new ToDoItem(itemId, curDay, memo));
 
                         adapter.addItem(item);
                         adapter.notifyDataSetChanged();
@@ -234,5 +273,6 @@ public class DayFragment extends Fragment implements DateController {
     public void changeDate(int field, int dd){
         curDay.add(field, dd);
         setDateTitle(curDay);
+        setList(curDay);
     }
 }

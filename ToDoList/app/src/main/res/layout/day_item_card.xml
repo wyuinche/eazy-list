@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:padding="@dimen/item_layout_padding"
+    android:foreground="?android:attr/selectableItemBackground">
 
-    <com.blueshadow.todolist.ui.day.DayItemCard
-        android:id="@+id/itemCard"
+    <TextView
+        android:id="@+id/day_itemTextView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@drawable/item_box_incomplete"
+        android:padding="@dimen/text_margin"
+        android:text=""
+        android:gravity="center"
+        android:textColor="?attr/colorControlActivated"
+        android:textSize="@dimen/item_text_size"
+        android:ellipsize="end"/>
 
 </FrameLayout>

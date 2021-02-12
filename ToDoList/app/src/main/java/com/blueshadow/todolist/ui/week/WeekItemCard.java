@@ -1,6 +1,6 @@
 package com.blueshadow.todolist.ui.week;
 
-import com.blueshadow.todolist.ui.ToDoItem;
+import com.blueshadow.todolist.ToDoItem;
 
 public class WeekItemCard {
     public boolean isDone;
@@ -10,6 +10,7 @@ public class WeekItemCard {
         isDone = false;
     }
     public WeekItemCard(ToDoItem item){
+        this.isDone = item.isDone();
         this.item = item;
     }
 

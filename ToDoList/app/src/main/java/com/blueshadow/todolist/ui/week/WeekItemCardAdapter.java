@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.blueshadow.todolist.R;
+import com.blueshadow.todolist.ToDoItem;
 
 import java.util.ArrayList;
 
@@ -45,9 +46,11 @@ public class WeekItemCardAdapter extends BaseAdapter {
         TextView textView = v.findViewById(R.id.week_item_textView);
         textView.setText(items.get(position).getItem().getMemo());
         if(items.get(position).getItemDone() == true){
+            textView.setBackgroundResource(R.drawable.week_day_item_box_selected);
             textView.setPaintFlags(textView.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
         }
         else{
+            textView.setBackgroundResource(R.drawable.week_day_item_box);
             textView.setPaintFlags(textView.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
             textView.setPaintFlags(0);
         }
@@ -60,5 +63,9 @@ public class WeekItemCardAdapter extends BaseAdapter {
     }
     public void removeItem(int position){
         items.remove(position);
+    }
+
+    public void cleanItems(){
+        items.clear();
     }
 }

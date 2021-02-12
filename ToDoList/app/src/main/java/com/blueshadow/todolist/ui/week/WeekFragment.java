@@ -9,26 +9,22 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.NumberPicker;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.blueshadow.todolist.DateController;
 import com.blueshadow.todolist.OnItemAndDateChangedListener;
 import com.blueshadow.todolist.R;
-import com.blueshadow.todolist.ui.ToDoItem;
-import com.blueshadow.todolist.ui.day.DayItemCard;
+import com.blueshadow.todolist.ToDoItem;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -101,6 +97,7 @@ public class WeekFragment extends Fragment implements DateController {
 
         curDay = listener.getCurrentCalendar(listener.WEEK_FRAGMENT);
         changeDate(Calendar.DATE, 0);
+        setList(curDay);
 
         return view;
     }
@@ -289,6 +286,25 @@ public class WeekFragment extends Fragment implements DateController {
         }
 
         setDayOfWeekTextViews();
+        setList(curDay);
+    }
+
+    @Override
+    public void setList(Calendar cal) {
+        Calendar baseCal = Calendar.getInstance();
+        baseCal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
+        baseCal.add(Calendar.DATE, -cal.get(Calendar.DAY_OF_WEEK) + 1);
+
+        Log.d("WeekFragment", "" + listener.parseCalendarToIntDate(baseCal));
+        for(int i = 0; i < 7; i++){
+            ArrayList<ToDoItem> items = listener.onItemSelect(baseCal);
+            adapters[i].cleanItems();
+            for(int j = 0; j < items.size(); j++){
+                adapters[i].addItem(new WeekItemCard(items.get(j)));
+            }
+            adapters[i].notifyDataSetChanged();
+            baseCal.add(Calendar.DATE, 1);
+        }
     }
 
     @Override

@@ -11,6 +11,10 @@
     <string name="menu_reset">Reset</string>
     <string name="menu_set">Setting</string>
 
+    <string name="reset_title">Delete All Items</string>
+    <string name="reset_yes">yes</string>
+    <string name="reset_no">no</string>
+
     <string name="tab_day">day</string>
     <string name="tab_week">week</string>
     <string name="tab_month">month</string>

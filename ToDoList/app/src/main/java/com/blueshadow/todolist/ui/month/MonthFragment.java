@@ -3,8 +3,6 @@ package com.blueshadow.todolist.ui.month;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
-import android.graphics.Paint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,33 +10,22 @@ import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
 import android.text.InputType;
-import android.text.Selection;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.blueshadow.todolist.DateController;
-import com.blueshadow.todolist.MainActivity;
 import com.blueshadow.todolist.OnItemAndDateChangedListener;
 import com.blueshadow.todolist.R;
-import com.blueshadow.todolist.ui.ToDoItem;
-import com.blueshadow.todolist.ui.week.WeekItemCard;
-import com.blueshadow.todolist.ui.week.WeekItemCardAdapter;
 
-import java.time.Month;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 public class MonthFragment extends Fragment implements DateController {
@@ -233,6 +220,11 @@ public class MonthFragment extends Fragment implements DateController {
     public void setDateTitle(Calendar cal) {
         dateTextView.setText(cal.get(Calendar.YEAR) + " / "
                 + (cal.get(Calendar.MONTH)+1));
+    }
+
+    @Override
+    public void setList(Calendar cal) {
+        return;
     }
 
     @Override

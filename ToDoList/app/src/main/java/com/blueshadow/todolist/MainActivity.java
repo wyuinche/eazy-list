@@ -1,12 +1,17 @@
 package com.blueshadow.todolist;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.blueshadow.todolist.ui.day.DayFragment;
+import com.blueshadow.todolist.ui.day.DayItemCard;
 import com.blueshadow.todolist.ui.month.MonthFragment;
 import com.blueshadow.todolist.ui.week.WeekFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -22,6 +27,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -58,9 +64,12 @@ public class MainActivity extends AppCompatActivity
     SharedPreferences.Editor prefEditor;
     int curId;
 
+    Bundle bundle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        bundle = savedInstanceState;
         setContentView(R.layout.activity_main);
 
         dayCal = Calendar.getInstance();
@@ -171,7 +180,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if(id == R.id.nav_reset){
-
+            askReset();
         }
         else if(id == R.id.nav_pay){
             Intent intent = new Intent(this, PayActivity.class);
@@ -185,32 +194,54 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    private void askReset(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.reset_title));
+        builder.setPositiveButton(getString(R.string.reset_yes),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        helper.onUpgrade(db, helper.VERSION, helper.VERSION + 1);
+                        dialog.dismiss();
+                    }
+                });
+        builder.setNegativeButton(getString(R.string.reset_no),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        builder.setCancelable(true);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
     @Override
     public int onItemInsert(Calendar curCal, String memo) {
         if(db == null){
             return -1;
         }
         int date = parseCalendarToIntDate(curCal);
+        db.execSQL("insert into "
+                + helper.TABLE_NAME
+                + " (" + helper.COLUMN_NAMES[0] + ", "
+                + helper.COLUMN_NAMES[1] + ", "
+                + helper.COLUMN_NAMES[2] + ", "
+                + helper.COLUMN_NAMES[3] + ")"
+                + " values "
+                + " (" + curId + ", " + date + ", '" + memo + "', 0)"
+        );
 
-//        db.execSQL("insert into "
-//                + helper.TABLE_NAME
-//                + " (" + helper.COLUMN_NAMES[0] + ", "
-//                + helper.COLUMN_NAMES[1] + ", "
-//                + helper.COLUMN_NAMES[2] + ", "
-//                + helper.COLUMN_NAMES[3] + ")"
-//                + " values "
-//                + " (" + curId + ", " + date + ", '" + memo + "', 0)"
-//        );
+        setCurId();
+        return getCurId() - 1;
 
-//        setCurId();
-//        return getCurId() - 1;
-        return 0;
     }
 
     @Override
     public void onItemDelete(int id) {
-//        db.execSQL("delete from " + helper.TABLE_NAME
-//                + " where _id = " + id);
+        db.execSQL("delete from " + helper.TABLE_NAME
+                + " where _id = " + id);
     }
 
     @Override
@@ -221,15 +252,36 @@ public class MainActivity extends AppCompatActivity
         }
         db.execSQL("update " + helper.TABLE_NAME
                 + " set "
-                + helper.COLUMN_NAMES[2] + " = " + memo + ", "
+                + helper.COLUMN_NAMES[2] + " = '" + memo + "', "
                 + helper.COLUMN_NAMES[3] + " = " + isDone
                 + " where _id = " + id
         );
     }
 
     @Override
-    public int onItemCountForDate(Calendar day) {
-        return 0;
+    public int onItemCountForDate(Calendar calendar) {
+        ArrayList<ToDoItem> items = onItemSelect(calendar);
+
+        return items.size();
+    }
+
+    @Override
+    public ArrayList<ToDoItem> onItemSelect(Calendar calendar) {
+        ArrayList<ToDoItem> items = new ArrayList<ToDoItem>();
+        int date = parseCalendarToIntDate(calendar);
+        Cursor cursor =
+                db.rawQuery("SELECT * FROM " + helper.TABLE_NAME
+                        + " WHERE " + helper.COLUMN_NAMES[1] + " = " + date, null);
+
+        if(cursor.moveToFirst()) {
+            do {
+                items.add(new ToDoItem(cursor.getInt(0), "" + cursor.getInt(1),
+                        cursor.getString(2), cursor.getInt(3)));
+            } while(cursor.moveToNext());
+        }
+        cursor.close();
+
+        return items;
     }
 
     @Override
@@ -239,8 +291,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public int parseCalendarToIntDate(Calendar calendar) {
+        Log.d("MainActivity", calendar.get(Calendar.YEAR) + " " + calendar.get(Calendar.MONTH) + " " + calendar.get(Calendar.DATE));
         String year = "" + calendar.get(Calendar.YEAR);
-        String month = "" + calendar.get(Calendar.MONTH) + 1;
+        String month = "" + (calendar.get(Calendar.MONTH) + 1);
         String day = "" + calendar.get(Calendar.DATE);
 
         if(month.length() < 2){
@@ -250,6 +303,7 @@ public class MainActivity extends AppCompatActivity
             day = "0" + day;
         }
 
+        Log.d("MainActivity", year + month + day);
         return Integer.parseInt(year+month+day);
     }
 

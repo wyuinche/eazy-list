@@ -1,4 +1,4 @@
-package com.blueshadow.todolist.ui;
+package com.blueshadow.todolist;
 
 import com.blueshadow.todolist.MainActivity;
 
@@ -27,13 +27,15 @@ public class ToDoItem {
         setMemo(memo);
         setDone(false);
     }
-
-    public void convertDone(){
-        if(done == false){
-            done = true;
+    public ToDoItem(int _id, String date, String memo, int done){
+        set_id(_id);
+        setDate(date);
+        setMemo(memo);
+        if(done == 0){
+            setDone(false);
         }
         else{
-            done = false;
+            setDone(true);
         }
     }
 

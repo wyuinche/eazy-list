@@ -34,12 +34,8 @@ public class ListDatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (newVersion > 1) {
-            db.execSQL("DROP TABLE IF EXISTS emp");
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         }
-    }
-
-    public void onReset(SQLiteDatabase db){
-        db.execSQL("DROP TABLE IF EXISTS emp");
         onCreate(db);
     }
 }

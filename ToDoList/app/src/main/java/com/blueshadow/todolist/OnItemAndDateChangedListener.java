@@ -1,5 +1,6 @@
 package com.blueshadow.todolist;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public interface OnItemAndDateChangedListener {
@@ -7,10 +8,11 @@ public interface OnItemAndDateChangedListener {
     final public static int WEEK_FRAGMENT = 2;
     final public static int MONTH_FRAGMENT = 3;
 
-    public int onItemInsert(Calendar day, String memo);
+    public int onItemInsert(Calendar calendar, String memo);
     public void onItemDelete(int id);
     public void onItemUpdate(int id, String memo, boolean done);
-    public int onItemCountForDate(Calendar day);
+    public ArrayList<ToDoItem> onItemSelect(Calendar calendar);
+    public int onItemCountForDate(Calendar calendar);
 
     public Calendar getTodayCalendar();
     public void setCurrentCalendar(int fragm, Calendar calendar);

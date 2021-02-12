@@ -11,6 +11,10 @@
     <string name="menu_reset">리스트 초기화</string>
     <string name="menu_set">설정</string>
 
+    <string name="reset_title">모든 일정 삭제</string>
+    <string name="reset_yes">예</string>
+    <string name="reset_no">아니오</string>
+
     <string name="tab_day">day</string>
     <string name="tab_week">week</string>
     <string name="tab_month">month</string>
