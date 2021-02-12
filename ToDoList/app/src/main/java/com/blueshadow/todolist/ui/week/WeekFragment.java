@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
@@ -39,11 +40,11 @@ public class WeekFragment extends Fragment implements DateController {
     private TextView dateTextView;
     private ImageView leftButton;
     private ImageView rightButton;
-    private ImageView addButton;
     private ImageView backButton;
 
     private TextView[] dayTitleTextViews = new TextView[7];
     private TextView[] dayOfWeekTextViews = new TextView[7];
+    private LinearLayout[] dayLinearLayouts = new LinearLayout[7];
 
     private ListView[] listViews = new ListView[7];
     private WeekItemCardAdapter[] adapters = new WeekItemCardAdapter[7];
@@ -109,7 +110,6 @@ public class WeekFragment extends Fragment implements DateController {
         dateTextView = view.findViewById(R.id.week_dateTextView);
         leftButton = view.findViewById(R.id.week_leftButton);
         rightButton = view.findViewById(R.id.week_rightButton);
-        addButton = view.findViewById(R.id.week_addButton);
         backButton = view.findViewById(R.id.week_backButton);
 
         dayTitleTextViews[0] = view.findViewById(R.id.week_sunday_textView);
@@ -127,6 +127,14 @@ public class WeekFragment extends Fragment implements DateController {
         dayOfWeekTextViews[4] = view.findViewById(R.id.week_thursday_date_textView);
         dayOfWeekTextViews[5] = view.findViewById(R.id.week_friday_date_textView);
         dayOfWeekTextViews[6] = view.findViewById(R.id.week_saturday_date_textView);
+
+        dayLinearLayouts[0] = view.findViewById(R.id.week_sunday_addLayout);
+        dayLinearLayouts[1] = view.findViewById(R.id.week_monday_addLayout);
+        dayLinearLayouts[2] = view.findViewById(R.id.week_tuesday_addLayout);
+        dayLinearLayouts[3] = view.findViewById(R.id.week_wednesday_addLayout);
+        dayLinearLayouts[4] = view.findViewById(R.id.week_thursday_addLayout);
+        dayLinearLayouts[5] = view.findViewById(R.id.week_friday_addLayout);
+        dayLinearLayouts[6] = view.findViewById(R.id.week_saturday_addLayout);
     }
 
     public void findListViews(View view){
@@ -142,22 +150,6 @@ public class WeekFragment extends Fragment implements DateController {
     @Override
     public void setListeners(View view){
         findView(view);
-
-        addButton.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch(event.getAction()){
-                    case MotionEvent.ACTION_DOWN:
-                        addButton.setImageResource(R.drawable.ic_add_on);
-                        return true;
-                    case MotionEvent.ACTION_UP:
-                        addButton.setImageResource(R.drawable.ic_add_off);
-                        addTask();
-                        return true;
-                }
-                return false;
-            }
-        });
 
         backButton.setOnTouchListener(new View.OnTouchListener(){
             @Override
@@ -222,22 +214,58 @@ public class WeekFragment extends Fragment implements DateController {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView textView = (TextView)view.findViewById(R.id.week_item_textView);
+
                 WeekItemCard item = (WeekItemCard)((WeekItemCardAdapter) parent.getAdapter()).getItem(position);
                 if(item.getItemDone() == true){
+                    textView.setBackgroundResource(R.drawable.week_day_item_box);
                     textView.setPaintFlags(textView.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
                     textView.setPaintFlags(0);
                     item.setItemDone(false);
                 }
                 else{
+                    textView.setBackgroundResource(R.drawable.week_day_item_box_selected);
                     textView.setPaintFlags(textView.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
                     item.setItemDone(true);
                 }
             }
         };
 
+        View.OnClickListener addTaskClickListener = new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                switch(v.getId()){
+                    case R.id.week_sunday_addLayout:
+                        selectedWd = 0;
+                        break;
+                    case R.id.week_monday_addLayout:
+                        selectedWd = 1;
+                        break;
+                    case R.id.week_tuesday_addLayout:
+                        selectedWd = 2;
+                        break;
+                    case R.id.week_wednesday_addLayout:
+                        selectedWd = 3;
+                        break;
+                    case R.id.week_thursday_addLayout:
+                        selectedWd = 4;
+                        break;
+                    case R.id.week_friday_addLayout:
+                        selectedWd = 5;
+                        break;
+                    case R.id.week_saturday_addLayout:
+                        selectedWd = 6;
+                        break;
+                    default:
+                        selectedWd = -1;
+                }
+                addTask();
+            }
+        };
+
         for(int i = 0; i < 7; i++){
             listViews[i].setOnItemLongClickListener(listViewItemLongClickListener);
             listViews[i].setOnItemClickListener(listViewItemClickListener);
+            dayLinearLayouts[i].setOnClickListener(addTaskClickListener);
         }
     }
 
@@ -271,31 +299,23 @@ public class WeekFragment extends Fragment implements DateController {
 
     @Override
     public void addTask() {
-        selectedWd = -1;
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        LayoutInflater inflater = getLayoutInflater();
-        View v = inflater.inflate(R.layout.week_add_task_dialog, null);
-
-        Spinner spinner = v.findViewById(R.id.week_add_task_spinner);
-        EditText editText = v.findViewById(R.id.week_add_task_editText);
-        ArrayList<String> spinnerItems = new ArrayList<String>();
-        for (int i = 1; i < 8; i++) {
-            spinnerItems.add(listener.getWeekdayString(i));
+        if(selectedWd == -1){
+            return;
         }
 
-        ArrayAdapter spinnerAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, spinnerItems);
-
-        spinner.setAdapter(spinnerAdapter);
-        spinner.setSelection(curDay.get(Calendar.DAY_OF_WEEK) - 1);
-
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        EditText itemAddEditText = new EditText(getContext());
+        itemAddEditText.setMaxEms(15);
+        itemAddEditText.setMaxLines(1);
+        itemAddEditText.setLines(1);
+        itemAddEditText.setHint(R.string.item_add_hint);
         builder.setTitle(getString(R.string.item_add_title));
-        builder.setView(v);
+        builder.setView(itemAddEditText);
         builder.setPositiveButton(getString(R.string.item_add_ok),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        selectedWd = spinner.getSelectedItemPosition() + 1;
-                        String memo = editText.getText().toString();
+                        String memo = itemAddEditText.getText().toString();
                         Calendar selectedCal = getSelectedCal(selectedWd);
                         int itemId;
                         itemId = listener.onItemInsert(selectedCal, memo);
@@ -303,8 +323,8 @@ public class WeekFragment extends Fragment implements DateController {
                             return;
                         }
                         WeekItemCard item = new WeekItemCard(new ToDoItem(itemId, selectedCal, memo));
-                        adapters[selectedWd - 1].addItem(item);
-                        adapters[selectedWd - 1].notifyDataSetChanged();
+                        adapters[selectedWd].addItem(item);
+                        adapters[selectedWd].notifyDataSetChanged();
                         dialog.dismiss();
                     }
                 });

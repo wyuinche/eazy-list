@@ -6,24 +6,25 @@
     android:foreground="?android:attr/selectableItemBackground"
     android:background="@drawable/month_day_item_box">
 
-    <TextView
-        android:id="@+id/month_day_date_textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical|left"
-        android:padding="@dimen/item_box_month_padding"
-        android:textColor="?attr/colorControlNormal"
-        android:text="nn"
-        android:textSize="@dimen/item_box_month_date_text_size"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/month_day_date_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|left"
+            android:padding="@dimen/item_box_month_padding"
+            android:textColor="?attr/colorControlNormal"
+            android:text="nn"
+            android:textSize="@dimen/item_box_month_date_text_size"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/month_day_item_count_textView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="number"
-        android:textColor="?attr/colorAccent"
-        android:textSize="@dimen/item_box_month_text_size"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/month_day_item_count_textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="number"
+            android:textColor="?attr/colorAccent"
+            android:textSize="@dimen/item_box_month_text_size"
+            android:textStyle="bold" />
+
 </LinearLayout>

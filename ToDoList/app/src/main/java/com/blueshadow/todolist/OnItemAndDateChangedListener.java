@@ -20,4 +20,7 @@ public interface OnItemAndDateChangedListener {
     public String getWeekdayString(int wd);
 
     public void goToDailyList(int year, int month, int day);
+
+    public void setMemo(String memo);
+    public String getMemo();
 }

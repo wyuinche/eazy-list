@@ -55,27 +55,34 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/week_sunday_date_textView"
+                <LinearLayout
+                    android:id="@+id/week_sunday_addLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textColor="?attr/colorControlNormal"
-                    android:layout_margin="@dimen/item_box_week_margin"
-                    android:textSize="@dimen/item_box_week_text_size"/>
+                    android:orientation="vertical"
+                    android:foreground="?android:attr/selectableItemBackground">
+                    <TextView
+                        android:id="@+id/week_sunday_date_textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorControlNormal"
+                        android:layout_margin="@dimen/item_box_week_margin"
+                        android:textSize="@dimen/item_box_week_text_size"/>
 
-                <TextView
-                    android:id="@+id/week_sunday_textView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/sunday"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:layout_margin="@dimen/item_box_week_margin"
-                    android:background="@drawable/week_day_title_box"
-                    android:textSize="@dimen/item_box_week_text_size"/>
+                    <TextView
+                        android:id="@+id/week_sunday_textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sunday"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:layout_margin="@dimen/item_box_week_margin"
+                        android:background="@drawable/week_day_title_box"
+                        android:textSize="@dimen/item_box_week_text_size"/>
+                </LinearLayout>
 
                 <ListView
                     android:id="@+id/week_sunday_listView"
@@ -91,28 +98,34 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/week_monday_date_textView"
+                <LinearLayout
+                    android:id="@+id/week_monday_addLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textColor="?attr/colorControlNormal"
-                    android:layout_margin="@dimen/item_box_week_margin"
-                    android:textSize="@dimen/item_box_week_text_size"/>
+                    android:orientation="vertical"
+                    android:foreground="?android:attr/selectableItemBackground">
+                    <TextView
+                        android:id="@+id/week_monday_date_textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorControlNormal"
+                        android:layout_margin="@dimen/item_box_week_margin"
+                        android:textSize="@dimen/item_box_week_text_size"/>
 
-                <TextView
-                    android:id="@+id/week_monday_textView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/monday"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:layout_margin="@dimen/item_box_week_margin"
-                    android:background="@drawable/week_day_title_box"
-                    android:textSize="@dimen/item_box_week_text_size"/>
+                    <TextView
+                        android:id="@+id/week_monday_textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/monday"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:layout_margin="@dimen/item_box_week_margin"
+                        android:background="@drawable/week_day_title_box"
+                        android:textSize="@dimen/item_box_week_text_size"/>
+                </LinearLayout>
 
                 <ListView
                     android:id="@+id/week_monday_listView"
@@ -129,27 +142,34 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/week_tuesday_date_textView"
+                <LinearLayout
+                    android:id="@+id/week_tuesday_addLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textColor="?attr/colorControlNormal"
-                    android:layout_margin="@dimen/item_box_week_margin"
-                    android:textSize="@dimen/item_box_week_text_size"/>
+                    android:orientation="vertical"
+                    android:foreground="?android:attr/selectableItemBackground">
+                    <TextView
+                        android:id="@+id/week_tuesday_date_textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorControlNormal"
+                        android:layout_margin="@dimen/item_box_week_margin"
+                        android:textSize="@dimen/item_box_week_text_size"/>
 
-                <TextView
-                    android:id="@+id/week_tuesday_textView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tuesday"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:layout_margin="@dimen/item_box_week_margin"
-                    android:background="@drawable/week_day_title_box"
-                    android:textSize="@dimen/item_box_week_text_size"/>
+                    <TextView
+                        android:id="@+id/week_tuesday_textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tuesday"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:layout_margin="@dimen/item_box_week_margin"
+                        android:background="@drawable/week_day_title_box"
+                        android:textSize="@dimen/item_box_week_text_size"/>
+                </LinearLayout>
 
                 <ListView
                     android:id="@+id/week_tuesday_listView"
@@ -166,27 +186,35 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/week_wednesday_date_textView"
+                <LinearLayout
+                    android:id="@+id/week_wednesday_addLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textColor="?attr/colorControlNormal"
-                    android:layout_margin="@dimen/item_box_week_margin"
-                    android:textSize="@dimen/item_box_week_text_size"/>
+                    android:orientation="vertical"
+                    android:foreground="?android:attr/selectableItemBackground">
 
-                <TextView
-                    android:id="@+id/week_wednesday_textView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/wednesday"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:layout_margin="@dimen/item_box_week_margin"
-                    android:background="@drawable/week_day_title_box"
-                    android:textSize="@dimen/item_box_week_text_size"/>
+                    <TextView
+                        android:id="@+id/week_wednesday_date_textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorControlNormal"
+                        android:layout_margin="@dimen/item_box_week_margin"
+                        android:textSize="@dimen/item_box_week_text_size"/>
+
+                    <TextView
+                        android:id="@+id/week_wednesday_textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/wednesday"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:layout_margin="@dimen/item_box_week_margin"
+                        android:background="@drawable/week_day_title_box"
+                        android:textSize="@dimen/item_box_week_text_size"/>
+                </LinearLayout>
 
                 <ListView
                     android:id="@+id/week_wednesday_listView"
@@ -203,27 +231,34 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/week_thursday_date_textView"
+                <LinearLayout
+                    android:id="@+id/week_thursday_addLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textColor="?attr/colorControlNormal"
-                    android:layout_margin="@dimen/item_box_week_margin"
-                    android:textSize="@dimen/item_box_week_text_size"/>
+                    android:orientation="vertical"
+                    android:foreground="?android:attr/selectableItemBackground">
+                    <TextView
+                        android:id="@+id/week_thursday_date_textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorControlNormal"
+                        android:layout_margin="@dimen/item_box_week_margin"
+                        android:textSize="@dimen/item_box_week_text_size"/>
 
-                <TextView
-                    android:id="@+id/week_thursday_textView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/thursday"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:layout_margin="@dimen/item_box_week_margin"
-                    android:background="@drawable/week_day_title_box"
-                    android:textSize="@dimen/item_box_week_text_size"/>
+                    <TextView
+                        android:id="@+id/week_thursday_textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/thursday"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:layout_margin="@dimen/item_box_week_margin"
+                        android:background="@drawable/week_day_title_box"
+                        android:textSize="@dimen/item_box_week_text_size"/>
+                </LinearLayout>
 
                 <ListView
                     android:id="@+id/week_thursday_listView"
@@ -240,27 +275,35 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/week_friday_date_textView"
+                <LinearLayout
+                    android:id="@+id/week_friday_addLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textColor="?attr/colorControlNormal"
-                    android:layout_margin="@dimen/item_box_week_margin"
-                    android:textSize="@dimen/item_box_week_text_size"/>
+                    android:orientation="vertical"
+                    android:foreground="?android:attr/selectableItemBackground">
+                    <TextView
+                        android:id="@+id/week_friday_date_textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorControlNormal"
+                        android:layout_margin="@dimen/item_box_week_margin"
+                        android:textSize="@dimen/item_box_week_text_size"/>
 
-                <TextView
-                    android:id="@+id/week_friday_textView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/friday"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:layout_margin="@dimen/item_box_week_margin"
-                    android:background="@drawable/week_day_title_box"
-                    android:textSize="@dimen/item_box_week_text_size"/>
+                    <TextView
+                        android:id="@+id/week_friday_textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/friday"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:layout_margin="@dimen/item_box_week_margin"
+                        android:background="@drawable/week_day_title_box"
+                        android:textSize="@dimen/item_box_week_text_size"/>
+
+                </LinearLayout>
 
                 <ListView
                     android:id="@+id/week_friday_listView"
@@ -277,27 +320,34 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/week_saturday_date_textView"
+                <LinearLayout
+                    android:id="@+id/week_saturday_addLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textColor="?attr/colorControlNormal"
-                    android:layout_margin="@dimen/item_box_week_margin"
-                    android:textSize="@dimen/item_box_week_text_size"/>
+                    android:orientation="vertical"
+                    android:foreground="?android:attr/selectableItemBackground">
+                    <TextView
+                        android:id="@+id/week_saturday_date_textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorControlNormal"
+                        android:layout_margin="@dimen/item_box_week_margin"
+                        android:textSize="@dimen/item_box_week_text_size"/>
 
-                <TextView
-                    android:id="@+id/week_saturday_textView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/saturday"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:layout_margin="@dimen/item_box_week_margin"
-                    android:background="@drawable/week_day_title_box"
-                    android:textSize="@dimen/item_box_week_text_size"/>
+                    <TextView
+                        android:id="@+id/week_saturday_textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/saturday"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:layout_margin="@dimen/item_box_week_margin"
+                        android:background="@drawable/week_day_title_box"
+                        android:textSize="@dimen/item_box_week_text_size"/>
+                </LinearLayout>
 
                 <ListView
                     android:id="@+id/week_saturday_listView"
@@ -323,13 +373,5 @@
             android:layout_margin="@dimen/fab_margin"
             android:scaleType="centerInside"
             android:src="@drawable/ic_back_today_off" />
-
-        <ImageView
-            android:id="@+id/week_addButton"
-            android:layout_width="@dimen/fab_size"
-            android:layout_height="@dimen/fab_size"
-            android:layout_margin="@dimen/fab_margin"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_add_off" />
     </LinearLayout>
 </FrameLayout>

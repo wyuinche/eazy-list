@@ -22,6 +22,13 @@
     <string name="item_add_day_select">next</string>
     <string name="item_add_hint">enter...</string>
 
+    <string name="memo">memo</string>
+    <string name="memo_edit_hint">enter...</string>
+    <string name="memo_edit_title">Edit Memo</string>
+    <string name="memo_edit_done">done</string>
+    <string name="memo_edit_cancel">cancel</string>
+    <string name="memo_lines">lines</string>
+
     <string name="sunday">SUN</string>
     <string name="monday">MON</string>
     <string name="tuesday">TUE</string>

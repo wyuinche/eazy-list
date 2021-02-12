@@ -34,7 +34,8 @@ public class MainActivity extends AppCompatActivity
     final public static SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
 
     final public static String FILE_NAME = "BLUESHADOW_TODOLIST";
-    final public static String PREF_NAME = "CUR_ID";
+    final public static String CUR_ID_PREF_NAME = "CUR_ID";
+    final public static String MEMO_PREF_NAME = "MEMO";
 
     NavigationView navigationView;
     DrawerLayout drawer;
@@ -120,7 +121,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private int getCurId(){
-        int tmp = pref.getInt(PREF_NAME, -1);
+        int tmp = pref.getInt(CUR_ID_PREF_NAME, -1);
         if(tmp == -1){
             return 1;
         }
@@ -131,7 +132,7 @@ public class MainActivity extends AppCompatActivity
 
     private void setCurId(){
         curId += 1;
-        prefEditor.putInt(PREF_NAME, curId);
+        prefEditor.putInt(CUR_ID_PREF_NAME, curId);
         prefEditor.commit();
     }
 
@@ -285,5 +286,17 @@ public class MainActivity extends AppCompatActivity
         dayCal.set(year, month, day);
         setCurrentCalendar(DAY_FRAGMENT, dayCal);
         manager.beginTransaction().replace(R.id.container, dayFragment).commit();
+    }
+
+    @Override
+    public void setMemo(String memo) {
+        prefEditor.putString(MEMO_PREF_NAME, memo);
+        prefEditor.commit();
+    }
+
+    @Override
+    public String getMemo() {
+        String tmp = pref.getString(MEMO_PREF_NAME, "");
+        return tmp;
     }
 }

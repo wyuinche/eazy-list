@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/item_month_memo_edit_dialog_padding">
+
+    <EditText
+        android:id="@+id/month_edit_memo_editText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_month_memo_size"
+        android:background="@drawable/month_edit_memo_box"
+        android:padding="@dimen/item_month_memo_edit_dialog_text_padding"
+        android:layout_margin="@dimen/item_month_memo_edit_dialog_margin"
+        android:gravity="top|left"
+        android:singleLine="false"
+        android:scrollHorizontally="false"
+        android:textSize="@dimen/item_box_month_text_size"
+        android:inputType="textImeMultiLine"
+        android:hint="@string/memo_edit_hint"
+        android:textColor="?attr/colorControlNormal"/>
+
+    <TextView
+        android:id="@+id/month_edit_memo_control_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right|center_vertical"
+        android:padding="@dimen/item_month_memo_edit_dialog_text_padding"
+        android:layout_margin="@dimen/item_month_memo_edit_dialog_margin"
+        android:text=""/>
+</LinearLayout>

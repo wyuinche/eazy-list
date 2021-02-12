@@ -8,10 +8,15 @@ public class MonthItemCard {
     int day;
     int itemCount;
 
+    boolean isToday;
+    boolean isMonth;
+
     public MonthItemCard() {}
-    public MonthItemCard(Calendar calendar, int count) {
+    public MonthItemCard(Calendar calendar, int count, boolean isToday, boolean isMonth) {
         parseCalendar(calendar);
         this.itemCount = count;
+        this.isToday = isToday;
+        this.isMonth = isMonth;
     }
 
     private void parseCalendar(Calendar calendar){

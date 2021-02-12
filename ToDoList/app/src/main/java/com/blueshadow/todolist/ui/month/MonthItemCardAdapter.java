@@ -1,6 +1,7 @@
 package com.blueshadow.todolist.ui.month;
 
 import android.content.Context;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,13 +11,21 @@ import android.widget.TextView;
 import com.blueshadow.todolist.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class MonthItemCardAdapter extends BaseAdapter {
     ArrayList<MonthItemCard> items = new ArrayList<>();
     Context context;
+    TypedValue outValue = new TypedValue();
+    int colorResIdIsMonth = outValue.resourceId;
+    int colorResIdNotMonth = outValue.resourceId;
 
     public MonthItemCardAdapter(Context context){
         this.context = context;
+        context.getTheme().resolveAttribute(android.R.attr.colorSecondary, outValue, true);
+        colorResIdNotMonth = outValue.resourceId;
+        context.getTheme().resolveAttribute(android.R.attr.colorControlNormal, outValue, true);
+        colorResIdIsMonth = outValue.resourceId;
     }
 
     public void addItem(MonthItemCard item){
@@ -63,6 +72,20 @@ public class MonthItemCardAdapter extends BaseAdapter {
         }
         else{
             countTextView.setText(""+count);
+        }
+
+        if(item.isToday == true){
+            convertView.setBackgroundResource(R.drawable.month_day_item_box_selected);
+        }
+        else{
+            convertView.setBackgroundResource(R.drawable.month_day_item_box);
+        }
+
+        if(item.isMonth == true){
+            dateTextView.setTextColor(context.getColor(colorResIdIsMonth));
+        }
+        else{
+            dateTextView.setTextColor(context.getColor(colorResIdNotMonth));
         }
 
         return convertView;
