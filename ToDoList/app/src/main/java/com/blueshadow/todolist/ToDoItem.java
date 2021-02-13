@@ -1,9 +1,6 @@
 package com.blueshadow.todolist;
 
-import com.blueshadow.todolist.MainActivity;
-
 import java.util.Calendar;
-import java.util.Date;
 
 public class ToDoItem {
     int _id;
@@ -11,22 +8,13 @@ public class ToDoItem {
     String memo;
     boolean done;
 
-    public ToDoItem(int _id){
-        set_id(_id);
-    }
-
     public ToDoItem(int _id, Calendar cal, String memo){
         set_id(_id);
         setDate(MainActivity.format.format(cal.getTime()));
         setMemo(memo);
         setDone(false);
     }
-    public ToDoItem(int _id, String date, String memo){
-        set_id(_id);
-        setDate(date);
-        setMemo(memo);
-        setDone(false);
-    }
+
     public ToDoItem(int _id, String date, String memo, int done){
         set_id(_id);
         setDate(date);
@@ -63,7 +51,7 @@ public class ToDoItem {
         this.memo = memo;
     }
 
-    public boolean isDone() {
+    public boolean getDone() {
         return done;
     }
 

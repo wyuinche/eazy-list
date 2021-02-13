@@ -11,7 +11,6 @@ public class MonthItemCard {
     boolean isToday;
     boolean isMonth;
 
-    public MonthItemCard() {}
     public MonthItemCard(Calendar calendar, int count, boolean isToday, boolean isMonth) {
         parseCalendar(calendar);
         this.itemCount = count;

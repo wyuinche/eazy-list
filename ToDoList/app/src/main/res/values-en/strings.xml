@@ -2,12 +2,8 @@
     <string name="app_name">Eazy List</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Eazy List</string>
-    <string name="nav_header_subtitle">Blue Shadow</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
-    <string name="menu_pay">Expand</string>
+    <string name="menu_pay">Remove Ads</string>
     <string name="menu_reset">Reset</string>
     <string name="menu_set">Setting</string>
 
@@ -20,18 +16,16 @@
     <string name="tab_month">month</string>
 
     <string name="item_add_title">New Item</string>
-    <string name="item_add_day_selection_title">Select Day</string>
     <string name="item_add_ok">add</string>
     <string name="item_add_cancel">cancel</string>
-    <string name="item_add_day_select">next</string>
     <string name="item_add_hint">enter...</string>
 
-    <string name="memo">memo</string>
+    <string name="memo_view_title">memo</string>
     <string name="memo_edit_hint">enter...</string>
     <string name="memo_edit_title">Edit Memo</string>
     <string name="memo_edit_done">done</string>
     <string name="memo_edit_cancel">cancel</string>
-    <string name="memo_lines">lines</string>
+    <string name="memo_edit_textwatcher_tail">lines</string>
 
     <string name="sunday">SUN</string>
     <string name="monday">MON</string>

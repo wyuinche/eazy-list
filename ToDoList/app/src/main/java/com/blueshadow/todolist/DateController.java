@@ -1,11 +1,11 @@
 package com.blueshadow.todolist;
 
 import android.view.View;
-
 import java.util.Calendar;
 
 public interface DateController {
-    public void findView(View view);
+    public void init(View view);
+    public void findViews(View view);
     public void setListeners(View view);
     public void setList(Calendar cal);
 

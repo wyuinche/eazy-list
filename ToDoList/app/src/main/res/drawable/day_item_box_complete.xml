@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <stroke android:width="@dimen/stroke_normal" android:color="?attr/colorSecondaryVariant"/>
+    <solid android:color="?attr/colorBackgroundFloating"/>
+    <padding android:top="@dimen/text_margin_medium" android:bottom="@dimen/text_margin_medium"
+        android:left="@dimen/text_margin_medium" android:right="@dimen/text_margin_medium"/>
+    <corners android:radius="@dimen/radius_big"/>
+</shape>

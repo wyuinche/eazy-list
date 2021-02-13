@@ -38,9 +38,9 @@ public class WeekFragment extends Fragment implements DateController {
     private ImageView rightButton;
     private ImageView backButton;
 
-    private TextView[] dayTitleTextViews = new TextView[7];
-    private TextView[] dayOfWeekTextViews = new TextView[7];
-    private LinearLayout[] dayLinearLayouts = new LinearLayout[7];
+    private TextView[] dayDateTextViews = new TextView[7];
+    private TextView[] dayTextViews = new TextView[7];
+    private LinearLayout[] dayAddLayouts = new LinearLayout[7];
 
     private ListView[] listViews = new ListView[7];
     private WeekItemCardAdapter[] adapters = new WeekItemCardAdapter[7];
@@ -49,9 +49,7 @@ public class WeekFragment extends Fragment implements DateController {
 
     int selectedWd = -1;
 
-    public WeekFragment() {
-
-    }
+    public WeekFragment() { }
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -87,51 +85,57 @@ public class WeekFragment extends Fragment implements DateController {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_week, container, false);
-        findListViews(view);
-        setListeners(view);
+        findViews(view);
 
         for(int i=0; i<7; i++){
             adapters[i] = new WeekItemCardAdapter(getContext());
             listViews[i].setAdapter(adapters[i]);
         }
+        setListeners(view);
 
-        curDay = listener.getCurrentCalendar(listener.WEEK_FRAGMENT);
-        changeDate(Calendar.DATE, 0);
-        setList(curDay);
+        init(view);
 
         return view;
     }
 
     @Override
-    public void findView(View view){
+    public void init(View view) {
+        curDay = listener.getCurrentCalendar(listener.WEEK_FRAGMENT);
+        changeDate(Calendar.DATE, 0);
+    }
+
+    @Override
+    public void findViews(View view){
+        findListViews(view);
+
         dateTextView = view.findViewById(R.id.week_dateTextView);
         leftButton = view.findViewById(R.id.week_leftButton);
         rightButton = view.findViewById(R.id.week_rightButton);
         backButton = view.findViewById(R.id.week_backButton);
 
-        dayTitleTextViews[0] = view.findViewById(R.id.week_sunday_textView);
-        dayTitleTextViews[1] = view.findViewById(R.id.week_monday_textView);
-        dayTitleTextViews[2] = view.findViewById(R.id.week_tuesday_textView);
-        dayTitleTextViews[3] = view.findViewById(R.id.week_wednesday_textView);
-        dayTitleTextViews[4] = view.findViewById(R.id.week_thursday_textView);
-        dayTitleTextViews[5] = view.findViewById(R.id.week_friday_textView);
-        dayTitleTextViews[6] = view.findViewById(R.id.week_saturday_textView);
+        dayTextViews[0] = view.findViewById(R.id.week_sunday_textView);
+        dayTextViews[1] = view.findViewById(R.id.week_monday_textView);
+        dayTextViews[2] = view.findViewById(R.id.week_tuesday_textView);
+        dayTextViews[3] = view.findViewById(R.id.week_wednesday_textView);
+        dayTextViews[4] = view.findViewById(R.id.week_thursday_textView);
+        dayTextViews[5] = view.findViewById(R.id.week_friday_textView);
+        dayTextViews[6] = view.findViewById(R.id.week_saturday_textView);
 
-        dayOfWeekTextViews[0] = view.findViewById(R.id.week_sunday_date_textView);
-        dayOfWeekTextViews[1] = view.findViewById(R.id.week_monday_date_textView);
-        dayOfWeekTextViews[2] = view.findViewById(R.id.week_tuesday_date_textView);
-        dayOfWeekTextViews[3] = view.findViewById(R.id.week_wednesday_date_textView);
-        dayOfWeekTextViews[4] = view.findViewById(R.id.week_thursday_date_textView);
-        dayOfWeekTextViews[5] = view.findViewById(R.id.week_friday_date_textView);
-        dayOfWeekTextViews[6] = view.findViewById(R.id.week_saturday_date_textView);
+        dayDateTextViews[0] = view.findViewById(R.id.week_sunday_date_textView);
+        dayDateTextViews[1] = view.findViewById(R.id.week_monday_date_textView);
+        dayDateTextViews[2] = view.findViewById(R.id.week_tuesday_date_textView);
+        dayDateTextViews[3] = view.findViewById(R.id.week_wednesday_date_textView);
+        dayDateTextViews[4] = view.findViewById(R.id.week_thursday_date_textView);
+        dayDateTextViews[5] = view.findViewById(R.id.week_friday_date_textView);
+        dayDateTextViews[6] = view.findViewById(R.id.week_saturday_date_textView);
 
-        dayLinearLayouts[0] = view.findViewById(R.id.week_sunday_addLayout);
-        dayLinearLayouts[1] = view.findViewById(R.id.week_monday_addLayout);
-        dayLinearLayouts[2] = view.findViewById(R.id.week_tuesday_addLayout);
-        dayLinearLayouts[3] = view.findViewById(R.id.week_wednesday_addLayout);
-        dayLinearLayouts[4] = view.findViewById(R.id.week_thursday_addLayout);
-        dayLinearLayouts[5] = view.findViewById(R.id.week_friday_addLayout);
-        dayLinearLayouts[6] = view.findViewById(R.id.week_saturday_addLayout);
+        dayAddLayouts[0] = view.findViewById(R.id.week_sunday_addLayout);
+        dayAddLayouts[1] = view.findViewById(R.id.week_monday_addLayout);
+        dayAddLayouts[2] = view.findViewById(R.id.week_tuesday_addLayout);
+        dayAddLayouts[3] = view.findViewById(R.id.week_wednesday_addLayout);
+        dayAddLayouts[4] = view.findViewById(R.id.week_thursday_addLayout);
+        dayAddLayouts[5] = view.findViewById(R.id.week_friday_addLayout);
+        dayAddLayouts[6] = view.findViewById(R.id.week_saturday_addLayout);
     }
 
     public void findListViews(View view){
@@ -146,7 +150,6 @@ public class WeekFragment extends Fragment implements DateController {
 
     @Override
     public void setListeners(View view){
-        findView(view);
 
         backButton.setOnTouchListener(new View.OnTouchListener(){
             @Override
@@ -217,13 +220,14 @@ public class WeekFragment extends Fragment implements DateController {
                     textView.setBackgroundResource(R.drawable.week_day_item_box);
                     textView.setPaintFlags(textView.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
                     textView.setPaintFlags(0);
-                    item.setItemDone(false);
+                    ((WeekItemCardAdapter) parent.getAdapter()).convertItemDone(position, false);
                 }
                 else{
                     textView.setBackgroundResource(R.drawable.week_day_item_box_selected);
                     textView.setPaintFlags(textView.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
-                    item.setItemDone(true);
+                    ((WeekItemCardAdapter) parent.getAdapter()).convertItemDone(position, true);
                 }
+                listener.onItemUpdate(item.getItem().get_id(), item.getItem().getMemo(), item.getItem().getDone());
             }
         };
 
@@ -262,7 +266,7 @@ public class WeekFragment extends Fragment implements DateController {
         for(int i = 0; i < 7; i++){
             listViews[i].setOnItemLongClickListener(listViewItemLongClickListener);
             listViews[i].setOnItemClickListener(listViewItemClickListener);
-            dayLinearLayouts[i].setOnClickListener(addTaskClickListener);
+            dayAddLayouts[i].setOnClickListener(addTaskClickListener);
         }
     }
 
@@ -297,7 +301,7 @@ public class WeekFragment extends Fragment implements DateController {
 
         Log.d("WeekFragment", "" + listener.parseCalendarToIntDate(baseCal));
         for(int i = 0; i < 7; i++){
-            ArrayList<ToDoItem> items = listener.onItemSelect(baseCal);
+            ArrayList<ToDoItem> items = listener.onItemSelect(baseCal, listener.SELECT_MODE_ALL);
             adapters[i].cleanItems();
             for(int j = 0; j < items.size(); j++){
                 adapters[i].addItem(new WeekItemCard(items.get(j)));
@@ -360,7 +364,7 @@ public class WeekFragment extends Fragment implements DateController {
 
     private Calendar getSelectedCal(int wd){
         Calendar tmpCal = Calendar.getInstance();
-        tmpCal.add(Calendar.DATE, wd - curDay.get(Calendar.DAY_OF_WEEK));
+        tmpCal.add(Calendar.DATE, wd - curDay.get(Calendar.DAY_OF_WEEK) + 1);
         return tmpCal;
     }
 
@@ -388,20 +392,20 @@ public class WeekFragment extends Fragment implements DateController {
     private void setDayOnDisplayColor(Calendar cal){
         int wd = cal.get(Calendar.DAY_OF_WEEK);
 
-        dayTitleTextViews[wd-1].setBackgroundResource(R.drawable.week_day_title_box_selected);
-        listViews[wd-1].setBackgroundResource(R.drawable.week_listview_box_selected);
+        dayTextViews[wd-1].setBackgroundResource(R.drawable.week_day_title_box_selected);
+        listViews[wd-1].setBackgroundResource(R.drawable.week_listview_background_selected);
     }
 
     private void clearDayOnDisplayColor(){
         for(int i=0; i < 7; i++){
-            dayTitleTextViews[i].setBackgroundResource(R.drawable.week_day_title_box);
-            listViews[i].setBackgroundResource(R.drawable.week_listview_box);
+            dayTextViews[i].setBackgroundResource(R.drawable.week_day_title_box);
+            listViews[i].setBackgroundResource(R.drawable.week_listview_background);
         }
     }
 
     private void setDayOfWeekTextViews(){
         for(int i = 0; i < 7; i++){
-            dayOfWeekTextViews[i].setText(""+dayOnDisplay[i].get(Calendar.DATE));
+            dayDateTextViews[i].setText(""+dayOnDisplay[i].get(Calendar.DATE));
         }
     }
 }

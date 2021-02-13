@@ -3,19 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/item_month_memo_edit_dialog_padding">
+    android:padding="@dimen/text_padding_large">
 
     <EditText
         android:id="@+id/month_edit_memo_editText"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/item_month_memo_size"
-        android:background="@drawable/month_edit_memo_box"
-        android:padding="@dimen/item_month_memo_edit_dialog_text_padding"
-        android:layout_margin="@dimen/item_month_memo_edit_dialog_margin"
+        android:layout_height="@dimen/memo_edit_height"
+        android:background="@drawable/month_memo_edit_text"
+        android:padding="@dimen/text_padding_big"
+        android:layout_margin="@dimen/text_margin_big"
         android:gravity="top|left"
         android:singleLine="false"
         android:scrollHorizontally="false"
-        android:textSize="@dimen/item_box_month_text_size"
+        android:textSize="@dimen/text_size_medium"
         android:inputType="textImeMultiLine"
         android:hint="@string/memo_edit_hint"
         android:textColor="?attr/colorControlNormal"/>
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="right|center_vertical"
-        android:padding="@dimen/item_month_memo_edit_dialog_text_padding"
-        android:layout_margin="@dimen/item_month_memo_edit_dialog_margin"
+        android:padding="@dimen/text_padding_big"
+        android:layout_margin="@dimen/text_margin_big"
         android:text=""/>
 </LinearLayout>

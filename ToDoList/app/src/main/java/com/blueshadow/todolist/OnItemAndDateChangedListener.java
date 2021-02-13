@@ -8,10 +8,14 @@ public interface OnItemAndDateChangedListener {
     final public static int WEEK_FRAGMENT = 2;
     final public static int MONTH_FRAGMENT = 3;
 
+    final public static int SELECT_MODE_ALL = 0;
+    final public static int SELECT_MODE_NOT_DONE = 1;
+    final public static int SELECT_MODE_DONE = 2;
+
     public int onItemInsert(Calendar calendar, String memo);
     public void onItemDelete(int id);
     public void onItemUpdate(int id, String memo, boolean done);
-    public ArrayList<ToDoItem> onItemSelect(Calendar calendar);
+    public ArrayList<ToDoItem> onItemSelect(Calendar calendar, int mode);
     public int onItemCountForDate(Calendar calendar);
 
     public Calendar getTodayCalendar();

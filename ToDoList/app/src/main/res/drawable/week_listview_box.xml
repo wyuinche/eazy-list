@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <stroke android:color="?attr/colorPrimarySurface" android:width="1dp"/>
-    <solid android:color="?attr/colorPrimarySurface" />
-    <padding android:right="@dimen/item_week_text_padding" android:left="@dimen/item_week_text_padding"
-        android:bottom="@dimen/item_week_text_padding" android:top="@dimen/item_week_text_padding"/>
-    <corners android:radius="3dp" />
-</shape>

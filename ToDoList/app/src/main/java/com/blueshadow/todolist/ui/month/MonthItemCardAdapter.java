@@ -11,19 +11,21 @@ import android.widget.TextView;
 import com.blueshadow.todolist.R;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class MonthItemCardAdapter extends BaseAdapter {
     ArrayList<MonthItemCard> items = new ArrayList<>();
     Context context;
-    TypedValue outValue = new TypedValue();
-    int colorResIdIsMonth = outValue.resourceId;
-    int colorResIdNotMonth = outValue.resourceId;
+    int colorResIdIsMonth;
+    int colorResIdNotMonth;
 
     public MonthItemCardAdapter(Context context){
         this.context = context;
+
+        TypedValue outValue = new TypedValue();
+
         context.getTheme().resolveAttribute(android.R.attr.colorSecondary, outValue, true);
         colorResIdNotMonth = outValue.resourceId;
+
         context.getTheme().resolveAttribute(android.R.attr.colorControlNormal, outValue, true);
         colorResIdIsMonth = outValue.resourceId;
     }
@@ -57,11 +59,11 @@ public class MonthItemCardAdapter extends BaseAdapter {
 
         if(convertView == null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.month_day_card, parent, false);
+            convertView = inflater.inflate(R.layout.month_item_card, parent, false);
         }
 
-        TextView dateTextView = convertView.findViewById(R.id.month_day_date_textView);
-        TextView countTextView = convertView.findViewById(R.id.month_day_item_count_textView);
+        TextView dateTextView = convertView.findViewById(R.id.month_item_date_textView);
+        TextView countTextView = convertView.findViewById(R.id.month_item_count_textView);
 
         int date = item.getDay();
         int count = item.getItemCount();
@@ -75,10 +77,10 @@ public class MonthItemCardAdapter extends BaseAdapter {
         }
 
         if(item.isToday == true){
-            convertView.setBackgroundResource(R.drawable.month_day_item_box_selected);
+            convertView.setBackgroundResource(R.drawable.month_item_box_selected);
         }
         else{
-            convertView.setBackgroundResource(R.drawable.month_day_item_box);
+            convertView.setBackgroundResource(R.drawable.month_item_box);
         }
 
         if(item.isMonth == true){

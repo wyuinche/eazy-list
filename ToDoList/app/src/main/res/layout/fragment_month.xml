@@ -31,8 +31,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
-                android:gravity="center"
-                android:text="yyyy / MM" />
+                android:gravity="center"/>
 
             <ImageView
                 android:id="@+id/month_rightButton"
@@ -47,18 +46,18 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/item_box_month_padding">
+            android:padding="@dimen/text_padding_small">
 
             <TextView
                 android:id="@+id/month_sunday_textView"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/item_box_week_margin"
+                android:layout_margin="@dimen/text_margin_small"
                 android:background="@drawable/week_day_title_box"
                 android:gravity="center"
                 android:text="@string/sunday"
-                android:textSize="@dimen/item_box_week_text_size"
+                android:textSize="@dimen/text_size_small"
                 android:textStyle="bold" />
 
             <TextView
@@ -66,11 +65,11 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/item_box_week_margin"
+                android:layout_margin="@dimen/text_margin_small"
                 android:background="@drawable/week_day_title_box"
                 android:gravity="center"
                 android:text="@string/monday"
-                android:textSize="@dimen/item_box_week_text_size"
+                android:textSize="@dimen/text_size_small"
                 android:textStyle="bold" />
 
             <TextView
@@ -78,11 +77,11 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/item_box_week_margin"
+                android:layout_margin="@dimen/text_margin_small"
                 android:background="@drawable/week_day_title_box"
                 android:gravity="center"
                 android:text="@string/tuesday"
-                android:textSize="@dimen/item_box_week_text_size"
+                android:textSize="@dimen/text_size_small"
                 android:textStyle="bold" />
 
             <TextView
@@ -90,11 +89,11 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/item_box_week_margin"
+                android:layout_margin="@dimen/text_margin_small"
                 android:background="@drawable/week_day_title_box"
                 android:gravity="center"
                 android:text="@string/wednesday"
-                android:textSize="@dimen/item_box_week_text_size"
+                android:textSize="@dimen/text_size_small"
                 android:textStyle="bold" />
 
             <TextView
@@ -102,11 +101,11 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/item_box_week_margin"
+                android:layout_margin="@dimen/text_margin_small"
                 android:background="@drawable/week_day_title_box"
                 android:gravity="center"
                 android:text="@string/thursday"
-                android:textSize="@dimen/item_box_week_text_size"
+                android:textSize="@dimen/text_size_small"
                 android:textStyle="bold" />
 
             <TextView
@@ -114,11 +113,11 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/item_box_week_margin"
+                android:layout_margin="@dimen/text_margin_small"
                 android:background="@drawable/week_day_title_box"
                 android:gravity="center"
                 android:text="@string/friday"
-                android:textSize="@dimen/item_box_week_text_size"
+                android:textSize="@dimen/text_size_small"
                 android:textStyle="bold" />
 
             <TextView
@@ -126,11 +125,11 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/item_box_week_margin"
+                android:layout_margin="@dimen/text_margin_small"
                 android:background="@drawable/week_day_title_box"
                 android:gravity="center"
                 android:text="@string/saturday"
-                android:textSize="@dimen/item_box_week_text_size"
+                android:textSize="@dimen/text_size_small"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -143,7 +142,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/month_view"
+                android:background="@drawable/month_calendar_background"
                 android:orientation="horizontal">
 
                 <ListView
@@ -151,63 +150,63 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:layout_margin="@dimen/item_box_month_margin"
+                    android:layout_margin="@dimen/text_margin_small"
                     android:divider="@color/transparent"
-                    android:dividerHeight="@dimen/item_day_divider_height" />
+                    android:dividerHeight="@dimen/divider_height"  />
 
                 <ListView
                     android:id="@+id/month_monday_listView"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:layout_margin="@dimen/item_box_month_margin"
+                    android:layout_margin="@dimen/text_margin_small"
                     android:divider="@color/transparent"
-                    android:dividerHeight="@dimen/item_day_divider_height" />
+                    android:dividerHeight="@dimen/divider_height" />
 
                 <ListView
                     android:id="@+id/month_tuesday_listView"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:layout_margin="@dimen/item_box_month_margin"
+                    android:layout_margin="@dimen/text_margin_small"
                     android:divider="@color/transparent"
-                    android:dividerHeight="@dimen/item_day_divider_height" />
+                    android:dividerHeight="@dimen/divider_height"  />
 
                 <ListView
                     android:id="@+id/month_wednesday_listView"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:layout_margin="@dimen/item_box_month_margin"
+                    android:layout_margin="@dimen/text_margin_small"
                     android:divider="@color/transparent"
-                    android:dividerHeight="@dimen/item_day_divider_height" />
+                    android:dividerHeight="@dimen/divider_height"  />
 
                 <ListView
                     android:id="@+id/month_thursday_listView"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:layout_margin="@dimen/item_box_month_margin"
+                    android:layout_margin="@dimen/text_margin_small"
                     android:divider="@color/transparent"
-                    android:dividerHeight="@dimen/item_day_divider_height" />
+                    android:dividerHeight="@dimen/divider_height" />
 
                 <ListView
                     android:id="@+id/month_friday_listView"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:layout_margin="@dimen/item_box_month_margin"
+                    android:layout_margin="@dimen/text_margin_small"
                     android:divider="@color/transparent"
-                    android:dividerHeight="@dimen/item_day_divider_height" />
+                    android:dividerHeight="@dimen/divider_height" />
 
                 <ListView
                     android:id="@+id/month_saturday_listView"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:layout_margin="@dimen/item_box_month_margin"
+                    android:layout_margin="@dimen/text_margin_small"
                     android:divider="@color/transparent"
-                    android:dividerHeight="@dimen/item_day_divider_height" />
+                    android:dividerHeight="@dimen/divider_height" />
 
             </LinearLayout>
 
@@ -215,7 +214,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:elevation="2dp"
-                android:layout_margin="@dimen/item_month_memo_margin">
+                android:layout_margin="@dimen/text_margin_medium">
 
                     <LinearLayout
                         android:id="@+id/month_memo_layout"
@@ -225,16 +224,16 @@
                         android:layout_gravity="center"
                         android:clickable="true"
                         android:foreground="?android:attr/selectableItemBackground"
-                        android:background="@drawable/month_memo_view" >
+                        android:background="@drawable/month_memo" >
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:padding="@dimen/item_box_month_padding"
-                            android:text="@string/memo"
+                            android:padding="@dimen/text_padding_small"
+                            android:text="@string/memo_view_title"
                             android:textColor="?attr/colorOnSurface"
-                            android:textSize="@dimen/item_box_month_memo_title_size"
+                            android:textSize="@dimen/text_size_big"
                             android:textStyle="bold" />
 
                         <ScrollView
@@ -245,10 +244,10 @@
                                 android:id="@+id/month_memo_textView"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:padding="@dimen/item_month_memo_text_padding"
+                                android:padding="@dimen/text_padding_big"
                                 android:lineSpacingMultiplier="1.5"
                                 android:textColor="?attr/colorSurface"
-                                android:textSize="@dimen/item_box_month_content_text_size" />
+                                android:textSize="@dimen/text_size_medium" />
                         </ScrollView>
                     </LinearLayout>
             </androidx.cardview.widget.CardView>

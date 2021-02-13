@@ -7,11 +7,9 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.blueshadow.todolist.ui.day.DayFragment;
-import com.blueshadow.todolist.ui.day.DayItemCard;
 import com.blueshadow.todolist.ui.month.MonthFragment;
 import com.blueshadow.todolist.ui.week.WeekFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -46,7 +44,6 @@ public class MainActivity extends AppCompatActivity
     NavigationView navigationView;
     DrawerLayout drawer;
     Toolbar toolbar;
-
     BottomNavigationView tab;
 
     Fragment dayFragment;
@@ -62,23 +59,39 @@ public class MainActivity extends AppCompatActivity
 
     SharedPreferences pref;
     SharedPreferences.Editor prefEditor;
-    int curId;
+    int curItemId;
 
-    Bundle bundle;
+    @Override
+    public void onBackPressed() {
+        if(drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START);
+        }
+        else{
+            super.onBackPressed();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bundle = savedInstanceState;
         setContentView(R.layout.activity_main);
 
         dayCal = Calendar.getInstance();
         weekCal = Calendar.getInstance();
         monthCal = Calendar.getInstance();
 
+        dayFragment = new DayFragment();
+        weekFragment = new WeekFragment();
+        monthFragment = new MonthFragment();
+
+        manager = getSupportFragmentManager();
+
         pref = getSharedPreferences(FILE_NAME, MODE_PRIVATE);
         prefEditor = pref.edit();
-        curId = getCurId();
+        curItemId = getCurItemId();
+
+        helper = new ListDatabaseHelper(getApplicationContext());
+        db = helper.getWritableDatabase();
 
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(dateFormat.format(new Date()) + " ("
@@ -93,15 +106,6 @@ public class MainActivity extends AppCompatActivity
 
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        manager = getSupportFragmentManager();
-
-        helper = new ListDatabaseHelper(getApplicationContext());
-        db = helper.getWritableDatabase();
-
-        dayFragment = new DayFragment();
-        weekFragment = new WeekFragment();
-        monthFragment = new MonthFragment();
 
         tab = findViewById(R.id.tab_view);
         tab.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -127,53 +131,6 @@ public class MainActivity extends AppCompatActivity
                 return true;
         }
         return false;
-    }
-
-    private int getCurId(){
-        int tmp = pref.getInt(CUR_ID_PREF_NAME, -1);
-        if(tmp == -1){
-            return 1;
-        }
-        else{
-            return tmp;
-        }
-    }
-
-    private void setCurId(){
-        curId += 1;
-        prefEditor.putInt(CUR_ID_PREF_NAME, curId);
-        prefEditor.commit();
-    }
-
-    @Override
-    public String getWeekdayString(int wd){
-        switch(wd){
-            case Calendar.SUNDAY:
-                return getString(R.string.sunday);
-            case Calendar.MONDAY:
-                return getString(R.string.monday);
-            case Calendar.TUESDAY:
-                return getString(R.string.tuesday);
-            case Calendar.WEDNESDAY:
-                return getString(R.string.wednesday);
-            case Calendar.THURSDAY:
-                return getString(R.string.thursday);
-            case Calendar.FRIDAY:
-                return getString(R.string.friday);
-            case Calendar.SATURDAY:
-                return getString(R.string.saturday);
-        }
-        return getString(R.string.Null);
-    }
-
-    @Override
-    public void onBackPressed() {
-        if(drawer.isDrawerOpen(GravityCompat.START)){
-            drawer.closeDrawer(GravityCompat.START);
-        }
-        else{
-            super.onBackPressed();
-        }
     }
 
     @Override
@@ -202,6 +159,7 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         helper.onUpgrade(db, helper.VERSION, helper.VERSION + 1);
+                        setCurItemId(1);
                         dialog.dismiss();
                     }
                 });
@@ -217,6 +175,22 @@ public class MainActivity extends AppCompatActivity
         dialog.show();
     }
 
+    private int getCurItemId(){
+        int tmp = pref.getInt(CUR_ID_PREF_NAME, -1);
+        if(tmp == -1){
+            return 1;
+        }
+        else{
+            return tmp;
+        }
+    }
+
+    private void setCurItemId(int curId){
+        curItemId = curId;
+        prefEditor.putInt(CUR_ID_PREF_NAME, curItemId);
+        prefEditor.commit();
+    }
+
     @Override
     public int onItemInsert(Calendar curCal, String memo) {
         if(db == null){
@@ -230,11 +204,11 @@ public class MainActivity extends AppCompatActivity
                 + helper.COLUMN_NAMES[2] + ", "
                 + helper.COLUMN_NAMES[3] + ")"
                 + " values "
-                + " (" + curId + ", " + date + ", '" + memo + "', 0)"
+                + " (" + curItemId + ", " + date + ", '" + memo + "', 0)"
         );
 
-        setCurId();
-        return getCurId() - 1;
+        setCurItemId(curItemId + 1);
+        return getCurItemId() - 1;
 
     }
 
@@ -260,18 +234,14 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public int onItemCountForDate(Calendar calendar) {
-        ArrayList<ToDoItem> items = onItemSelect(calendar);
-
+        ArrayList<ToDoItem> items = onItemSelect(calendar, SELECT_MODE_NOT_DONE);
         return items.size();
     }
 
     @Override
-    public ArrayList<ToDoItem> onItemSelect(Calendar calendar) {
+    public ArrayList<ToDoItem> onItemSelect(Calendar calendar, int mode) {
         ArrayList<ToDoItem> items = new ArrayList<ToDoItem>();
-        int date = parseCalendarToIntDate(calendar);
-        Cursor cursor =
-                db.rawQuery("SELECT * FROM " + helper.TABLE_NAME
-                        + " WHERE " + helper.COLUMN_NAMES[1] + " = " + date, null);
+        Cursor cursor = selectItems(calendar, mode);
 
         if(cursor.moveToFirst()) {
             do {
@@ -284,6 +254,46 @@ public class MainActivity extends AppCompatActivity
         return items;
     }
 
+    private Cursor selectItems(Calendar cal, int mode){
+        int date = parseCalendarToIntDate(cal);
+
+        if(mode == SELECT_MODE_NOT_DONE){
+            return db.rawQuery("SELECT * FROM " + helper.TABLE_NAME
+                    + " WHERE " + helper.COLUMN_NAMES[1] + " = " + date
+                    + " AND " + helper.COLUMN_NAMES[3] + " = 0", null);
+        }
+        else if(mode == SELECT_MODE_DONE){
+            return db.rawQuery("SELECT * FROM " + helper.TABLE_NAME
+                    + " WHERE " + helper.COLUMN_NAMES[1] + " = " + date
+                    + " AND " + helper.COLUMN_NAMES[3] + " = 1", null);
+        }
+        else{
+            return db.rawQuery("SELECT * FROM " + helper.TABLE_NAME
+                    + " WHERE " + helper.COLUMN_NAMES[1] + " = " + date, null);
+        }
+    }
+
+    @Override
+    public String getWeekdayString(int wd){
+        switch(wd){
+            case Calendar.SUNDAY:
+                return getString(R.string.sunday);
+            case Calendar.MONDAY:
+                return getString(R.string.monday);
+            case Calendar.TUESDAY:
+                return getString(R.string.tuesday);
+            case Calendar.WEDNESDAY:
+                return getString(R.string.wednesday);
+            case Calendar.THURSDAY:
+                return getString(R.string.thursday);
+            case Calendar.FRIDAY:
+                return getString(R.string.friday);
+            case Calendar.SATURDAY:
+                return getString(R.string.saturday);
+        }
+        return getString(R.string.Null);
+    }
+
     @Override
     public Calendar getTodayCalendar() {
         return Calendar.getInstance();
@@ -291,7 +301,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public int parseCalendarToIntDate(Calendar calendar) {
-        Log.d("MainActivity", calendar.get(Calendar.YEAR) + " " + calendar.get(Calendar.MONTH) + " " + calendar.get(Calendar.DATE));
         String year = "" + calendar.get(Calendar.YEAR);
         String month = "" + (calendar.get(Calendar.MONTH) + 1);
         String day = "" + calendar.get(Calendar.DATE);
@@ -303,7 +312,6 @@ public class MainActivity extends AppCompatActivity
             day = "0" + day;
         }
 
-        Log.d("MainActivity", year + month + day);
         return Integer.parseInt(year+month+day);
     }
 

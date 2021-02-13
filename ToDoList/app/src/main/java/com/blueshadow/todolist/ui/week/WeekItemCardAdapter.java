@@ -45,6 +45,7 @@ public class WeekItemCardAdapter extends BaseAdapter {
 
         TextView textView = v.findViewById(R.id.week_item_textView);
         textView.setText(items.get(position).getItem().getMemo());
+
         if(items.get(position).getItemDone() == true){
             textView.setBackgroundResource(R.drawable.week_day_item_box_selected);
             textView.setPaintFlags(textView.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
@@ -67,5 +68,10 @@ public class WeekItemCardAdapter extends BaseAdapter {
 
     public void cleanItems(){
         items.clear();
+    }
+
+    public void convertItemDone(int position, boolean done){
+        items.get(position).getItem().setDone(done);
+        items.get(position).setItemDone(done);
     }
 }

@@ -41,15 +41,15 @@ public class DayItemCardAdapter extends BaseAdapter {
         LayoutInflater inflater = LayoutInflater.from(context);
         View v = (FrameLayout) inflater.inflate(R.layout.day_item_card, null);
 
-        TextView textView = v.findViewById(R.id.day_itemTextView);
+        TextView textView = v.findViewById(R.id.day_item_textView);
         textView.setText(items.get(position).getItem().getMemo());
 
-        if(items.get(position).getItem().isDone()){
-            textView.setBackgroundResource(R.drawable.item_box_complete);
+        if(items.get(position).getItemDone() == true){
+            textView.setBackgroundResource(R.drawable.day_item_box_complete);
             textView.setPaintFlags(textView.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
         }
         else{
-            textView.setBackgroundResource(R.drawable.item_box_incomplete);
+            textView.setBackgroundResource(R.drawable.day_item_box_incomplete);
             textView.setPaintFlags(textView.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
             textView.setPaintFlags(0);
         }
@@ -65,6 +65,7 @@ public class DayItemCardAdapter extends BaseAdapter {
     }
 
     public void convertItemDone(int position, boolean done){
+        items.get(position).setItemDone(done);
         items.get(position).getItem().setDone(done);
     }
 

@@ -30,8 +30,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
-                android:gravity="center"
-                android:text="yyyy / MM (n)" />
+                android:gravity="center"/>
 
             <ImageView
                 android:id="@+id/week_rightButton"
@@ -69,8 +68,8 @@
                         android:gravity="center"
                         android:textStyle="bold"
                         android:textColor="?attr/colorControlNormal"
-                        android:layout_margin="@dimen/item_box_week_margin"
-                        android:textSize="@dimen/item_box_week_text_size"/>
+                        android:layout_margin="@dimen/text_margin_small"
+                        android:textSize="@dimen/text_size_small"/>
 
                     <TextView
                         android:id="@+id/week_sunday_textView"
@@ -79,9 +78,9 @@
                         android:text="@string/sunday"
                         android:gravity="center"
                         android:textStyle="bold"
-                        android:layout_margin="@dimen/item_box_week_margin"
-                        android:background="@drawable/week_day_title_box"
-                        android:textSize="@dimen/item_box_week_text_size"/>
+                        android:layout_margin="@dimen/text_margin_small"
+                        android:textSize="@dimen/text_size_small"
+                        android:background="@drawable/week_day_title_box" />
                 </LinearLayout>
 
                 <ListView
@@ -89,8 +88,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:divider="@color/transparent"
-                    android:dividerHeight="@dimen/item_day_divider_height"
-                    android:background="@drawable/week_listview_box"/>
+                    android:dividerHeight="@dimen/divider_height"
+                    android:background="@drawable/week_listview_background"/>
             </LinearLayout>
 
             <LinearLayout
@@ -112,8 +111,8 @@
                         android:gravity="center"
                         android:textStyle="bold"
                         android:textColor="?attr/colorControlNormal"
-                        android:layout_margin="@dimen/item_box_week_margin"
-                        android:textSize="@dimen/item_box_week_text_size"/>
+                        android:layout_margin="@dimen/text_margin_small"
+                        android:textSize="@dimen/text_size_small"/>
 
                     <TextView
                         android:id="@+id/week_monday_textView"
@@ -122,9 +121,9 @@
                         android:text="@string/monday"
                         android:gravity="center"
                         android:textStyle="bold"
-                        android:layout_margin="@dimen/item_box_week_margin"
                         android:background="@drawable/week_day_title_box"
-                        android:textSize="@dimen/item_box_week_text_size"/>
+                        android:layout_margin="@dimen/text_margin_small"
+                        android:textSize="@dimen/text_size_small"/>
                 </LinearLayout>
 
                 <ListView
@@ -132,8 +131,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:divider="@color/transparent"
-                    android:dividerHeight="@dimen/item_day_divider_height"
-                    android:background="@drawable/week_listview_box"/>
+                    android:dividerHeight="@dimen/divider_height"
+                    android:background="@drawable/week_listview_background"/>
             </LinearLayout>
 
             <LinearLayout
@@ -156,8 +155,8 @@
                         android:gravity="center"
                         android:textStyle="bold"
                         android:textColor="?attr/colorControlNormal"
-                        android:layout_margin="@dimen/item_box_week_margin"
-                        android:textSize="@dimen/item_box_week_text_size"/>
+                        android:layout_margin="@dimen/text_margin_small"
+                        android:textSize="@dimen/text_size_small"/>
 
                     <TextView
                         android:id="@+id/week_tuesday_textView"
@@ -166,9 +165,9 @@
                         android:text="@string/tuesday"
                         android:gravity="center"
                         android:textStyle="bold"
-                        android:layout_margin="@dimen/item_box_week_margin"
                         android:background="@drawable/week_day_title_box"
-                        android:textSize="@dimen/item_box_week_text_size"/>
+                        android:layout_margin="@dimen/text_margin_small"
+                        android:textSize="@dimen/text_size_small"/>
                 </LinearLayout>
 
                 <ListView
@@ -176,8 +175,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:divider="@color/transparent"
-                    android:dividerHeight="@dimen/item_day_divider_height"
-                    android:background="@drawable/week_listview_box"/>
+                    android:dividerHeight="@dimen/divider_height"
+                    android:background="@drawable/week_listview_background"/>
             </LinearLayout>
 
             <LinearLayout
@@ -201,8 +200,8 @@
                         android:gravity="center"
                         android:textStyle="bold"
                         android:textColor="?attr/colorControlNormal"
-                        android:layout_margin="@dimen/item_box_week_margin"
-                        android:textSize="@dimen/item_box_week_text_size"/>
+                        android:layout_margin="@dimen/text_margin_small"
+                        android:textSize="@dimen/text_size_small"/>
 
                     <TextView
                         android:id="@+id/week_wednesday_textView"
@@ -211,9 +210,9 @@
                         android:text="@string/wednesday"
                         android:gravity="center"
                         android:textStyle="bold"
-                        android:layout_margin="@dimen/item_box_week_margin"
                         android:background="@drawable/week_day_title_box"
-                        android:textSize="@dimen/item_box_week_text_size"/>
+                        android:layout_margin="@dimen/text_margin_small"
+                        android:textSize="@dimen/text_size_small"/>
                 </LinearLayout>
 
                 <ListView
@@ -221,8 +220,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:divider="@color/transparent"
-                    android:dividerHeight="@dimen/item_day_divider_height"
-                    android:background="@drawable/week_listview_box"/>
+                    android:dividerHeight="@dimen/divider_height"
+                    android:background="@drawable/week_listview_background"/>
             </LinearLayout>
 
             <LinearLayout
@@ -245,8 +244,8 @@
                         android:gravity="center"
                         android:textStyle="bold"
                         android:textColor="?attr/colorControlNormal"
-                        android:layout_margin="@dimen/item_box_week_margin"
-                        android:textSize="@dimen/item_box_week_text_size"/>
+                        android:layout_margin="@dimen/text_margin_small"
+                        android:textSize="@dimen/text_size_small"/>
 
                     <TextView
                         android:id="@+id/week_thursday_textView"
@@ -255,9 +254,9 @@
                         android:text="@string/thursday"
                         android:gravity="center"
                         android:textStyle="bold"
-                        android:layout_margin="@dimen/item_box_week_margin"
                         android:background="@drawable/week_day_title_box"
-                        android:textSize="@dimen/item_box_week_text_size"/>
+                        android:layout_margin="@dimen/text_margin_small"
+                        android:textSize="@dimen/text_size_small"/>
                 </LinearLayout>
 
                 <ListView
@@ -265,8 +264,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:divider="@color/transparent"
-                    android:dividerHeight="@dimen/item_day_divider_height"
-                    android:background="@drawable/week_listview_box"/>
+                    android:dividerHeight="@dimen/divider_height"
+                    android:background="@drawable/week_listview_background"/>
             </LinearLayout>
 
             <LinearLayout
@@ -289,8 +288,8 @@
                         android:gravity="center"
                         android:textStyle="bold"
                         android:textColor="?attr/colorControlNormal"
-                        android:layout_margin="@dimen/item_box_week_margin"
-                        android:textSize="@dimen/item_box_week_text_size"/>
+                        android:layout_margin="@dimen/text_margin_small"
+                        android:textSize="@dimen/text_size_small"/>
 
                     <TextView
                         android:id="@+id/week_friday_textView"
@@ -299,9 +298,9 @@
                         android:text="@string/friday"
                         android:gravity="center"
                         android:textStyle="bold"
-                        android:layout_margin="@dimen/item_box_week_margin"
                         android:background="@drawable/week_day_title_box"
-                        android:textSize="@dimen/item_box_week_text_size"/>
+                        android:layout_margin="@dimen/text_margin_small"
+                        android:textSize="@dimen/text_size_small"/>
 
                 </LinearLayout>
 
@@ -310,8 +309,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:divider="@color/transparent"
-                    android:dividerHeight="@dimen/item_day_divider_height"
-                    android:background="@drawable/week_listview_box"/>
+                    android:dividerHeight="@dimen/divider_height"
+                    android:background="@drawable/week_listview_background"/>
             </LinearLayout>
 
             <LinearLayout
@@ -334,8 +333,8 @@
                         android:gravity="center"
                         android:textStyle="bold"
                         android:textColor="?attr/colorControlNormal"
-                        android:layout_margin="@dimen/item_box_week_margin"
-                        android:textSize="@dimen/item_box_week_text_size"/>
+                        android:layout_margin="@dimen/text_margin_small"
+                        android:textSize="@dimen/text_size_small"/>
 
                     <TextView
                         android:id="@+id/week_saturday_textView"
@@ -344,9 +343,9 @@
                         android:text="@string/saturday"
                         android:gravity="center"
                         android:textStyle="bold"
-                        android:layout_margin="@dimen/item_box_week_margin"
+                        android:layout_margin="@dimen/text_margin_small"
                         android:background="@drawable/week_day_title_box"
-                        android:textSize="@dimen/item_box_week_text_size"/>
+                        android:textSize="@dimen/text_size_small"/>
                 </LinearLayout>
 
                 <ListView
@@ -354,8 +353,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:divider="@color/transparent"
-                    android:dividerHeight="@dimen/item_day_divider_height"
-                    android:background="@drawable/week_listview_box"/>
+                    android:dividerHeight="@dimen/divider_height"
+                    android:background="@drawable/week_listview_background"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

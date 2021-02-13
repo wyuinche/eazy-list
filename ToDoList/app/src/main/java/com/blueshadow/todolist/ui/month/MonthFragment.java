@@ -16,6 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -87,21 +88,24 @@ public class MonthFragment extends Fragment implements DateController {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = (View) inflater.inflate(R.layout.fragment_month, container, false);
-        findListViews(view);
-        setListeners(view);
-
-        curDay = listener.getCurrentCalendar(listener.MONTH_FRAGMENT);
+        findViews(view);
 
         for(int i=0; i<7; i++){
             adapters[i] = new MonthItemCardAdapter(getContext());
             listViews[i].setAdapter(adapters[i]);
         }
+        setListeners(view);
 
+        init(view);
+
+        return view;
+    }
+
+    @Override
+    public void init(View view) {
+        curDay = listener.getCurrentCalendar(listener.MONTH_FRAGMENT);
         changeDate(Calendar.DATE, 0);
         memoTextView.setText(getMemo());
-
-        // Inflate the layout for this fragment
-        return view;
     }
 
     private void findListViews(View view){
@@ -115,7 +119,9 @@ public class MonthFragment extends Fragment implements DateController {
     }
 
     @Override
-    public void findView(View view){
+    public void findViews(View view){
+        findListViews(view);
+
         dateTextView = view.findViewById(R.id.month_dateTextView);
         leftButton = view.findViewById(R.id.month_leftButton);
         rightButton = view.findViewById(R.id.month_rightButton);
@@ -128,7 +134,6 @@ public class MonthFragment extends Fragment implements DateController {
 
     @Override
     public void setListeners(View view){
-        findView(view);
 
         addButton.setOnTouchListener(new View.OnTouchListener(){
             @Override
@@ -222,14 +227,46 @@ public class MonthFragment extends Fragment implements DateController {
                 + (cal.get(Calendar.MONTH)+1));
     }
 
-    @Override
-    public void setList(Calendar cal) {
-        return;
-    }
 
     @Override
     public void addTask(){
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        LinearLayout dialogLayout = (LinearLayout) inflater.inflate(R.layout.month_add_task_dialog, null);
 
+        DatePicker datePicker = dialogLayout.findViewById(R.id.month_add_task_datePicker);
+        EditText editText = dialogLayout.findViewById(R.id.month_add_task_editText);
+
+        datePicker.setSpinnersShown(true);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setView(dialogLayout);
+        builder.setTitle(getString(R.string.item_add_title));
+        builder.setPositiveButton(getString(R.string.item_add_ok),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String memo = editText.getText().toString();
+                        Calendar selectedCal =  Calendar.getInstance();
+                        selectedCal.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
+                        int itemId;
+                        itemId = listener.onItemInsert(selectedCal, memo);
+                        if (itemId == -1) {
+                            return;
+                        }
+                        changeDate(Calendar.DATE, 0);
+                        dialog.dismiss();
+                    }
+                });
+        builder.setNegativeButton(getString(R.string.item_add_cancel),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        builder.setCancelable(true);
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     @Override
@@ -241,7 +278,7 @@ public class MonthFragment extends Fragment implements DateController {
         tmp.set(Calendar.DATE, 1);
         tmp.set(Calendar.YEAR, curDay.get(Calendar.YEAR));
         tmp.set(Calendar.MONTH, curDay.get(Calendar.MONTH));
-        drawCalendar(tmp);
+        setList(tmp);
     }
 
     @Override
@@ -250,18 +287,15 @@ public class MonthFragment extends Fragment implements DateController {
         changeDate(Calendar.DATE, 0);
     }
 
-    private void drawCalendar(Calendar cal){
-        boolean isToday = false;
-        boolean isMonth = false;
+    @Override
+    public void setList(Calendar cal){
+        boolean isToday;
+        boolean isMonth;
         Calendar today = listener.getTodayCalendar();
         int baseMonth = cal.get(Calendar.MONTH);
         int baseYear = cal.get(Calendar.YEAR);
         int finMonth = (cal.get(Calendar.MONTH) + 1) % 12;
         cal.add(Calendar.DATE, -cal.get(Calendar.DAY_OF_WEEK));
-
-        if(finMonth == 13){
-            finMonth = 1;
-        }
 
         cleanAdapters();
         while(true){
@@ -306,7 +340,7 @@ public class MonthFragment extends Fragment implements DateController {
         EditText editText = v.findViewById(R.id.month_edit_memo_editText);
         TextView controlTextView = v.findViewById(R.id.month_edit_memo_control_textView);
         editText.setText(getMemo());
-        controlTextView.setText(getNumOfLines(getMemo()) + " " + getString(R.string.memo_lines));
+        controlTextView.setText(getNumOfLines(getMemo()) + " " + getString(R.string.memo_edit_textwatcher_tail));
         editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
 
         watcher = new TextWatcher() {
@@ -318,7 +352,7 @@ public class MonthFragment extends Fragment implements DateController {
             @Override
             public void afterTextChanged(Editable s) {
                 String text = editText.getText().toString();
-                controlTextView.setText(getNumOfLines(text) + " " + getString(R.string.memo_lines));
+                controlTextView.setText(getNumOfLines(text) + " " + getString(R.string.memo_edit_textwatcher_tail));
             }
         };
         editText.addTextChangedListener(watcher);

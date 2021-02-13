@@ -1,49 +1,38 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+
+    <dimen name="nav_header_margin">16dp</dimen>
     <dimen name="nav_header_height">100dp</dimen>
     <dimen name="fab_margin">10dp</dimen>
     <dimen name="fab_size">60dp</dimen>
-    <dimen name="text_margin">16dp</dimen>
-    <dimen name="app_name_size">30dp</dimen>
+
+    <dimen name="divider_height">4dp</dimen>
+
+    <dimen name="text_margin_small">1dp</dimen>
+    <dimen name="text_margin_medium">5dp</dimen>
+    <dimen name="text_margin_big">10dp</dimen>
 
     <dimen name="tab_height">55dp</dimen>
-
     <dimen name="icon_size">30dp</dimen>
 
-    <dimen name="item_card_size">60dp</dimen>
-    <dimen name="item_box_padding">3dp</dimen>
-    <dimen name="item_layout_padding">5dp</dimen>
-    <dimen name="item_text_size">15sp</dimen>
-    <dimen name="item_button_size">40dp</dimen>
+    <dimen name="text_padding_small">1dp</dimen>
+    <dimen name="text_padding_big">5dp</dimen>
+    <dimen name="text_padding_large">10dp</dimen>
 
-    <dimen name="item_day_divider_height">4dp</dimen>
-    <dimen name="item_week_divider_height">2dp</dimen>
-    <dimen name="item_month_divider_height">1dp</dimen>
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_big">20sp</dimen>
+    <dimen name="text_size_large">30sp</dimen>
 
-    <dimen name="item_week_text_padding">1dp</dimen>
-    <dimen name="item_box_week_margin">1dp</dimen>
-    <dimen name="item_box_week_text_size">12sp</dimen>
-    <dimen name="item_box_week_height">40dp</dimen>
+    <dimen name="layout_padding">5dp</dimen>
 
-    <dimen name="item_box_month_padding">1dp</dimen>
-    <dimen name="item_box_month_margin">1dp</dimen>
-    <dimen name="item_box_month_title_margin">4dp</dimen>
-    <dimen name="item_box_month_inside_margin">1dp</dimen>
-    <dimen name="item_box_month_outside_margin">2dp</dimen>
-    <dimen name="item_month_text_padding">1dp</dimen>
+    <dimen name="radius_small">1dp</dimen>
+    <dimen name="radius_medium">3dp</dimen>
+    <dimen name="radius_middle">2dp</dimen>
+    <dimen name="radius_big">10dp</dimen>
+    <dimen name="stroke_normal">1dp</dimen>
+    <dimen name="stroke_selected">1dp</dimen>
 
-    <dimen name="item_month_memo_margin">4dp</dimen>
-    <dimen name="item_month_memo_size">200dp</dimen>
-    <dimen name="item_month_memo_text_padding">5dp</dimen>
-    <dimen name="item_month_memo_edit_dialog_text_padding">5dp</dimen>
-    <dimen name="item_month_memo_edit_dialog_padding">10dp</dimen>
-    <dimen name="item_month_memo_edit_dialog_margin">10dp</dimen>
+    <dimen name="memo_edit_height">200dp</dimen>
 
-    <dimen name="item_box_month_text_size">16sp</dimen>
-    <dimen name="item_box_month_date_text_size">12sp</dimen>
-    <dimen name="item_box_month_memo_title_size">20sp</dimen>
-    <dimen name="item_box_month_content_text_size">16sp</dimen>
 </resources>

@@ -24,8 +24,6 @@ import com.blueshadow.todolist.DateController;
 import com.blueshadow.todolist.OnItemAndDateChangedListener;
 import com.blueshadow.todolist.R;
 import com.blueshadow.todolist.ToDoItem;
-import com.blueshadow.todolist.ui.week.WeekItemCard;
-import com.blueshadow.todolist.ui.week.WeekItemCardAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -81,48 +79,21 @@ public class DayFragment extends Fragment implements DateController {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = (View) inflater.inflate(R.layout.fragment_day, container, false);
-        setListeners(view);
-
-        curDay = listener.getCurrentCalendar(listener.DAY_FRAGMENT);
-        setDateTitle(curDay);
+        findViews(view);
 
         adapter = new DayItemCardAdapter(getContext());
-        listView = view.findViewById(R.id.day_listView);
-
-        setList(curDay);
-
         listView.setAdapter(adapter);
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                listener.onItemDelete(((DayItemCard) adapter.getItem(position)).getItem().get_id());
-                adapter.removeItem(position);
-                adapter.notifyDataSetChanged();
-                return true;
-            }
-        });
+        setListeners(view);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                DayItemCard item = (DayItemCard) adapter.getItem(position);
-                TextView textView = view.findViewById(R.id.day_itemTextView);
-                if(item.getItem().isDone()){
-                    textView.setBackgroundResource(R.drawable.item_box_incomplete);
-                    textView.setPaintFlags(textView.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
-                    textView.setPaintFlags(0);
-                    adapter.convertItemDone(position, false);
-                }
-                else{
-                    textView.setBackgroundResource(R.drawable.item_box_complete);
-                    textView.setPaintFlags(textView.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
-                    adapter.convertItemDone(position, true);
-                }
-                listener.onItemUpdate(item.getItem().get_id(), item.getItem().getMemo(), item.getItem().isDone());
-            }
-        });
+        init(view);
 
         return view;
+    }
+
+    @Override
+    public void init(View view) {
+        curDay = listener.getCurrentCalendar(listener.DAY_FRAGMENT);
+        changeDate(Calendar.DATE, 0);
     }
 
     @Override
@@ -132,7 +103,9 @@ public class DayFragment extends Fragment implements DateController {
     }
 
     @Override
-    public void findView(View view){
+    public void findViews(View view){
+        listView = view.findViewById(R.id.day_listView);
+
         dateTextView = view.findViewById(R.id.day_dateTextView);
         leftButton = view.findViewById(R.id.day_leftButton);
         rightButton = view.findViewById(R.id.day_rightButton);
@@ -142,8 +115,6 @@ public class DayFragment extends Fragment implements DateController {
 
     @Override
     public void setListeners(View view){
-        findView(view);
-
         addButton.setOnTouchListener(new View.OnTouchListener(){
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -207,16 +178,46 @@ public class DayFragment extends Fragment implements DateController {
                 return false;
             }
         });
+
+        listView.setAdapter(adapter);
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                listener.onItemDelete(((DayItemCard)adapter.getItem(position)).getItem().get_id());
+                adapter.removeItem(position);
+                adapter.notifyDataSetChanged();
+                return true;
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                DayItemCard item = (DayItemCard) adapter.getItem(position);
+                TextView textView = view.findViewById(R.id.day_item_textView);
+                if(item.getItemDone() == true){
+                    textView.setBackgroundResource(R.drawable.day_item_box_incomplete);
+                    textView.setPaintFlags(textView.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+                    textView.setPaintFlags(0);
+                    adapter.convertItemDone(position, false);
+                }
+                else{
+                    textView.setBackgroundResource(R.drawable.day_item_box_complete);
+                    textView.setPaintFlags(textView.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+                    adapter.convertItemDone(position, true);
+                }
+                listener.onItemUpdate(item.getItem().get_id(), item.getItem().getMemo(), item.getItem().getDone());
+            }
+        });
     }
 
     @Override
     public void setList(Calendar cal) {
-        ArrayList<ToDoItem> items = listener.onItemSelect(cal);
+        ArrayList<ToDoItem> items = listener.onItemSelect(cal, listener.SELECT_MODE_ALL);
 
         adapter.cleanItems();
         for(int i = 0; i < items.size(); i++){
-            DayItemCard item = new DayItemCard();
-            item.setItem(items.get(i));
+            DayItemCard item = new DayItemCard(items.get(i));
             adapter.addItem(item);
         }
         adapter.notifyDataSetChanged();
@@ -225,11 +226,13 @@ public class DayFragment extends Fragment implements DateController {
     @Override
     public void addTask(){
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
         EditText itemAddEditText = new EditText(getContext());
         itemAddEditText.setMaxEms(15);
         itemAddEditText.setMaxLines(1);
         itemAddEditText.setLines(1);
         itemAddEditText.setHint(R.string.item_add_hint);
+
         builder.setTitle(getString(R.string.item_add_title));
         builder.setView(itemAddEditText);
         builder.setPositiveButton(getString(R.string.item_add_ok),
@@ -237,16 +240,14 @@ public class DayFragment extends Fragment implements DateController {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String memo = itemAddEditText.getText().toString();
-                        DayItemCard item = new DayItemCard();
 
                         int itemId;
                         itemId = listener.onItemInsert(curDay, memo);
                         if(itemId == -1){
                             return;
                         }
-                        item.setItem(new ToDoItem(itemId, curDay, memo));
 
-                        adapter.addItem(item);
+                        adapter.addItem(new DayItemCard(new ToDoItem(itemId, curDay, memo)));
                         adapter.notifyDataSetChanged();
                         dialog.dismiss();
                     }

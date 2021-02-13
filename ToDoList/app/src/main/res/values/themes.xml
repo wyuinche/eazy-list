@@ -31,25 +31,4 @@
         <item name="android:colorControlHighlight">@color/purple_500</item>
     </style>
 
-    <style name="Theme.ToDoList.NoActionBar.Ivory" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-
-        <item name="colorPrimary">@color/purple_100</item>
-        <item name="colorPrimaryVariant">@color/purple_200</item>
-        <item name="colorOnPrimary">@color/white</item>
-
-        <item name="android:colorControlHighlight">@color/purple_500</item>
-    </style>
-
-    <style name="Theme.ToDoList.NoActionBar.Mint" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-
-        <item name="colorPrimary">@color/purple_100</item>
-        <item name="colorPrimaryVariant">@color/purple_200</item>
-        <item name="colorOnPrimary">@color/white</item>
-
-        <item name="android:colorControlHighlight">@color/purple_500</item>
-    </style>
 </resources>

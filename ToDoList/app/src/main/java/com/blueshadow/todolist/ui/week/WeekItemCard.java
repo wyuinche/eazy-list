@@ -6,11 +6,8 @@ public class WeekItemCard {
     public boolean isDone;
     ToDoItem item;
 
-    public WeekItemCard(){
-        isDone = false;
-    }
     public WeekItemCard(ToDoItem item){
-        this.isDone = item.isDone();
+        this.isDone = item.getDone();
         this.item = item;
     }
 

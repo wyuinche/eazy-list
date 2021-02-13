@@ -3,20 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/item_layout_padding"
-    android:foreground="?android:attr/selectableItemBackground">
+    android:padding="@dimen/layout_padding">
 
-    <TextView
-        android:id="@+id/day_itemTextView"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:background="@drawable/item_box_incomplete"
-        android:padding="@dimen/text_margin"
-        android:text=""
-        android:gravity="center"
-        android:textColor="?attr/colorControlActivated"
-        android:textSize="@dimen/item_text_size"
-        android:ellipsize="end"/>
-
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground">
+        <TextView
+            android:id="@+id/day_item_textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/day_item_box_incomplete"
+            android:padding="@dimen/text_padding_big"
+            android:text=""
+            android:gravity="center"
+            android:textColor="?attr/colorControlActivated"
+            android:textSize="@dimen/text_size_medium"
+            android:ellipsize="end"/>
+    </androidx.cardview.widget.CardView>
 </FrameLayout>

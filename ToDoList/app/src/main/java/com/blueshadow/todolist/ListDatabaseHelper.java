@@ -21,7 +21,7 @@ public class ListDatabaseHelper extends SQLiteOpenHelper {
                 + " date INTEGER, "
                 + " memo TEXT, "
                 + " done INTEGER)";
-        String createIndex = "create unique index if not exists date_index "
+        String createIndex = "create index if not exists date_index "
                 + " on " + TABLE_NAME + "(date)";
         db.execSQL(createDB);
         db.execSQL(createIndex);
