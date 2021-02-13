@@ -25,6 +25,7 @@
     <dimen name="text_size_large">30sp</dimen>
 
     <dimen name="layout_padding">5dp</dimen>
+    <dimen name="layout_margin">16dp</dimen>
 
     <dimen name="radius_small">1dp</dimen>
     <dimen name="radius_medium">3dp</dimen>

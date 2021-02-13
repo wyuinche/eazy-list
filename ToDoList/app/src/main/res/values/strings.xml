@@ -7,6 +7,11 @@
     <string name="menu_reset">Reset</string>
     <string name="menu_set">Setting</string>
 
+    <string name="activity_title_pay">Remove Ads</string>
+    <string name="activity_title_set">Setting</string>
+
+    <string name="set_theme">Change Theme</string>
+
     <string name="reset_title">Delete All Items</string>
     <string name="reset_yes">yes</string>
     <string name="reset_no">no</string>
