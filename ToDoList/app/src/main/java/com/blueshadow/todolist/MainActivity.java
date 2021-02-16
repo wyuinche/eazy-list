@@ -16,6 +16,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnItemAndDateChangedListener {
     final public static int REQUEST_CODE_PAY = 101;
     final public static int REQUEST_CODE_SETTING = 102;
+    final public static int REQUEST_CODE_HELP = 103;
 
     final public static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy / MM / dd");
     final public static SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
@@ -40,6 +42,10 @@ public class MainActivity extends AppCompatActivity
     final public static String FILE_NAME = "BLUESHADOW_TODOLIST";
     final public static String CUR_ID_PREF_NAME = "CUR_ID";
     final public static String MEMO_PREF_NAME = "MEMO";
+    final public static String THEME_PREF_NAME = "THEME";
+    final public static int THEME_PURPLE = 1;
+    final public static int THEME_BLUE = 2;
+    final public static int THEME_BLACK = 3;
 
     NavigationView navigationView;
     DrawerLayout drawer;
@@ -60,6 +66,7 @@ public class MainActivity extends AppCompatActivity
     SharedPreferences pref;
     SharedPreferences.Editor prefEditor;
     int curItemId;
+    int curTheme;
 
     @Override
     public void onBackPressed() {
@@ -74,6 +81,12 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        pref = getSharedPreferences(FILE_NAME, MODE_PRIVATE);
+        prefEditor = pref.edit();
+        curItemId = getCurItemId();
+        setAppTheme();
+
         setContentView(R.layout.activity_main);
 
         dayCal = Calendar.getInstance();
@@ -85,10 +98,6 @@ public class MainActivity extends AppCompatActivity
         monthFragment = new MonthFragment();
 
         manager = getSupportFragmentManager();
-
-        pref = getSharedPreferences(FILE_NAME, MODE_PRIVATE);
-        prefEditor = pref.edit();
-        curItemId = getCurItemId();
 
         helper = new ListDatabaseHelper(getApplicationContext());
         db = helper.getWritableDatabase();
@@ -118,6 +127,27 @@ public class MainActivity extends AppCompatActivity
         manager.beginTransaction().add(R.id.container, dayFragment).commit();
     }
 
+    public void setAppTheme(){
+        curTheme = pref.getInt(THEME_PREF_NAME, -1);
+        switch(curTheme){
+            case THEME_BLUE:
+                setTheme(R.style.BlueTheme);
+                break;
+            case THEME_BLACK:
+                setTheme(R.style.DarkTheme);
+                break;
+            case THEME_PURPLE:
+            default:
+                setTheme(R.style.PurpleTheme);
+                break;
+        }
+    }
+
+    public void saveAppTheme(int theme){
+        prefEditor.putInt(THEME_PREF_NAME, theme);
+        prefEditor.commit();
+    }
+
     private boolean onTabPressed(int res){
         switch(res){
             case R.id.tab_day:
@@ -145,7 +175,12 @@ public class MainActivity extends AppCompatActivity
         }
         else if(id == R.id.nav_set){
             Intent intent = new Intent(this, SettingActivity.class);
+            intent.putExtra(THEME_PREF_NAME, curTheme);
             startActivityForResult(intent, REQUEST_CODE_SETTING);
+        }
+        else if(id == R.id.nav_help){
+            Intent intent = new Intent(this, HelpActivity.class);
+            startActivityForResult(intent, REQUEST_CODE_HELP);
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -360,5 +395,23 @@ public class MainActivity extends AppCompatActivity
     public String getMemo() {
         String tmp = pref.getString(MEMO_PREF_NAME, "");
         return tmp;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch(requestCode){
+            case REQUEST_CODE_PAY:
+                break;
+            case REQUEST_CODE_SETTING:
+                if(resultCode == RESULT_OK){
+                    int theme = data.getIntExtra(THEME_PREF_NAME, -1);
+                    saveAppTheme(theme);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+        }
     }
 }

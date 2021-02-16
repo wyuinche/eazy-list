@@ -36,4 +36,6 @@
 
     <dimen name="memo_edit_height">200dp</dimen>
 
+    <dimen name="item_height_normal">40dp</dimen>
+
 </resources>

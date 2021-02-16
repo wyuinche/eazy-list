@@ -6,11 +6,16 @@
     <string name="menu_pay">Remove Ads</string>
     <string name="menu_reset">Reset</string>
     <string name="menu_set">Setting</string>
+    <string name="menu_help">Help</string>
 
     <string name="activity_title_pay">Remove Ads</string>
     <string name="activity_title_set">Setting</string>
+    <string name="activity_title_help">Usage</string>
 
     <string name="set_theme">Change Theme</string>
+    <string name="theme_purple">PURPLE</string>
+    <string name="theme_blue">BLUE</string>
+    <string name="theme_dark">DARK</string>
 
     <string name="reset_title">Delete All Items</string>
     <string name="reset_yes">yes</string>
@@ -40,4 +45,7 @@
     <string name="friday">FRI</string>
     <string name="saturday">SAT</string>
     <string name="Null">Null</string>
+
+    <string name="help_content_1">hello</string>
+
 </resources>

@@ -21,7 +21,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorOnSurface"
+                android:background="?attr/tabBackground"
                 app:popupTheme="@style/Theme.ToDoList.PopupOverlay" />
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -50,7 +50,7 @@
                 app:itemTextColor="@drawable/tab_item"
                 app:itemIconTint="@drawable/tab_item"
                 app:menu="@menu/activity_main_tab"
-                android:background="?attr/colorOnSurface"
+                android:background="?attr/tabBackground"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 >
             </com.google.android.material.bottomnavigation.BottomNavigationView>

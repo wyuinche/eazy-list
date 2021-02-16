@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.blueshadow.todolist.R;
@@ -39,7 +40,7 @@ public class DayItemCardAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View v = (FrameLayout) inflater.inflate(R.layout.day_item_card, null);
+        View v = (LinearLayout) inflater.inflate(R.layout.day_item_card, null);
 
         TextView textView = v.findViewById(R.id.day_item_textView);
         textView.setText(items.get(position).getItem().getMemo());

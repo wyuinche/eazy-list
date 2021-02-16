@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="@dimen/layout_margin"
+    android:padding="@dimen/layout_margin"
     android:background="?attr/colorSurface"
     tools:context=".SettingActivity">
 
@@ -18,53 +18,57 @@
         android:gravity="center"
         android:textColor="?attr/colorControlNormal"
         android:textStyle="bold"
-        android:textSize="@dimen/text_size_large"
+        android:textSize="@dimen/text_size_big"
         android:text="@string/activity_title_set" />
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:textSize="@dimen/text_size_big"
-        android:textColor="?attr/colorControlNormal"
-        android:layout_marginHorizontal="@dimen/text_margin_medium"
-        android:padding="@dimen/text_padding_large"
-        android:text="@string/set_theme" />
-
-    <RadioGroup
-        android:id="@+id/setting_theme_radio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/text_margin_medium"
-        android:padding="@dimen/text_padding_large"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/radioButton"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="@dimen/text_padding_small">
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:gravity="center"
             android:textSize="@dimen/text_size_medium"
             android:textColor="?attr/colorControlNormal"
-            android:text="RadioButton" />
+            android:layout_marginHorizontal="@dimen/text_margin_medium"
+            android:padding="@dimen/text_padding_large"
+            android:text="@string/set_theme" />
 
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        <RadioGroup
+            android:id="@+id/setting_theme_radio"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="?attr/colorControlNormal"
-            android:textSize="@dimen/text_size_medium"
-            android:text="RadioButton" />
+            android:layout_marginHorizontal="@dimen/text_margin_medium"
+            android:textSize="@dimen/text_size_small"
+            android:padding="@dimen/text_padding_large"
+            android:orientation="horizontal">
 
-        <RadioButton
-            android:id="@+id/radioButton3"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:textColor="?attr/colorControlNormal"
-            android:textSize="@dimen/text_size_medium"
-            android:text="RadioButton" />
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/setting_theme_purple"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textColor="@color/purple_400"
+                android:text="@string/theme_purple" />
+
+            <RadioButton
+                android:id="@+id/setting_theme_blue"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textColor="@color/mid_blue_500"
+                android:text="@string/theme_blue" />
+
+            <RadioButton
+                android:id="@+id/setting_theme_dark"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="@string/theme_dark" />
+        </RadioGroup>
+    </LinearLayout>
 </LinearLayout>

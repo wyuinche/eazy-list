@@ -1,6 +1,7 @@
 package com.blueshadow.todolist.ui.month;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,11 +24,9 @@ public class MonthItemCardAdapter extends BaseAdapter {
 
         TypedValue outValue = new TypedValue();
 
-        context.getTheme().resolveAttribute(android.R.attr.colorSecondary, outValue, true);
+        context.getTheme().resolveAttribute(android.R.attr.colorPrimary, outValue, true);
         colorResIdNotMonth = outValue.resourceId;
-
-        context.getTheme().resolveAttribute(android.R.attr.colorControlNormal, outValue, true);
-        colorResIdIsMonth = outValue.resourceId;
+        colorResIdIsMonth = Color.BLACK;
     }
 
     public void addItem(MonthItemCard item){
@@ -84,7 +83,7 @@ public class MonthItemCardAdapter extends BaseAdapter {
         }
 
         if(item.isMonth == true){
-            dateTextView.setTextColor(context.getColor(colorResIdIsMonth));
+            dateTextView.setTextColor(colorResIdIsMonth);
         }
         else{
             dateTextView.setTextColor(context.getColor(colorResIdNotMonth));

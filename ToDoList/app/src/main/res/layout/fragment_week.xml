@@ -30,6 +30,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
+                android:textColor="?attr/colorControlNormal"
                 android:gravity="center"/>
 
             <ImageView
@@ -67,7 +68,7 @@
                         android:text=""
                         android:gravity="center"
                         android:textStyle="bold"
-                        android:textColor="?attr/colorControlNormal"
+                        android:textColor="?attr/colorControlActivated"
                         android:layout_margin="@dimen/text_margin_small"
                         android:textSize="@dimen/text_size_small"/>
 
@@ -79,6 +80,7 @@
                         android:gravity="center"
                         android:textStyle="bold"
                         android:layout_margin="@dimen/text_margin_small"
+                        android:textColor="?attr/colorControlActivated"
                         android:textSize="@dimen/text_size_small"
                         android:background="@drawable/week_day_title_box" />
                 </LinearLayout>
@@ -110,7 +112,7 @@
                         android:text=""
                         android:gravity="center"
                         android:textStyle="bold"
-                        android:textColor="?attr/colorControlNormal"
+                        android:textColor="?attr/colorControlActivated"
                         android:layout_margin="@dimen/text_margin_small"
                         android:textSize="@dimen/text_size_small"/>
 
@@ -121,6 +123,7 @@
                         android:text="@string/monday"
                         android:gravity="center"
                         android:textStyle="bold"
+                        android:textColor="?attr/colorControlActivated"
                         android:background="@drawable/week_day_title_box"
                         android:layout_margin="@dimen/text_margin_small"
                         android:textSize="@dimen/text_size_small"/>
@@ -154,7 +157,7 @@
                         android:text=""
                         android:gravity="center"
                         android:textStyle="bold"
-                        android:textColor="?attr/colorControlNormal"
+                        android:textColor="?attr/colorControlActivated"
                         android:layout_margin="@dimen/text_margin_small"
                         android:textSize="@dimen/text_size_small"/>
 
@@ -163,6 +166,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/tuesday"
+                        android:textColor="?attr/colorControlActivated"
                         android:gravity="center"
                         android:textStyle="bold"
                         android:background="@drawable/week_day_title_box"
@@ -199,7 +203,7 @@
                         android:text=""
                         android:gravity="center"
                         android:textStyle="bold"
-                        android:textColor="?attr/colorControlNormal"
+                        android:textColor="?attr/colorControlActivated"
                         android:layout_margin="@dimen/text_margin_small"
                         android:textSize="@dimen/text_size_small"/>
 
@@ -210,6 +214,7 @@
                         android:text="@string/wednesday"
                         android:gravity="center"
                         android:textStyle="bold"
+                        android:textColor="?attr/colorControlActivated"
                         android:background="@drawable/week_day_title_box"
                         android:layout_margin="@dimen/text_margin_small"
                         android:textSize="@dimen/text_size_small"/>
@@ -243,7 +248,7 @@
                         android:text=""
                         android:gravity="center"
                         android:textStyle="bold"
-                        android:textColor="?attr/colorControlNormal"
+                        android:textColor="?attr/colorControlActivated"
                         android:layout_margin="@dimen/text_margin_small"
                         android:textSize="@dimen/text_size_small"/>
 
@@ -254,6 +259,7 @@
                         android:text="@string/thursday"
                         android:gravity="center"
                         android:textStyle="bold"
+                        android:textColor="?attr/colorControlActivated"
                         android:background="@drawable/week_day_title_box"
                         android:layout_margin="@dimen/text_margin_small"
                         android:textSize="@dimen/text_size_small"/>
@@ -287,7 +293,7 @@
                         android:text=""
                         android:gravity="center"
                         android:textStyle="bold"
-                        android:textColor="?attr/colorControlNormal"
+                        android:textColor="?attr/colorControlActivated"
                         android:layout_margin="@dimen/text_margin_small"
                         android:textSize="@dimen/text_size_small"/>
 
@@ -298,6 +304,7 @@
                         android:text="@string/friday"
                         android:gravity="center"
                         android:textStyle="bold"
+                        android:textColor="?attr/colorControlActivated"
                         android:background="@drawable/week_day_title_box"
                         android:layout_margin="@dimen/text_margin_small"
                         android:textSize="@dimen/text_size_small"/>
@@ -332,7 +339,7 @@
                         android:text=""
                         android:gravity="center"
                         android:textStyle="bold"
-                        android:textColor="?attr/colorControlNormal"
+                        android:textColor="?attr/colorControlActivated"
                         android:layout_margin="@dimen/text_margin_small"
                         android:textSize="@dimen/text_size_small"/>
 
@@ -344,6 +351,7 @@
                         android:gravity="center"
                         android:textStyle="bold"
                         android:layout_margin="@dimen/text_margin_small"
+                        android:textColor="?attr/colorControlActivated"
                         android:background="@drawable/week_day_title_box"
                         android:textSize="@dimen/text_size_small"/>
                 </LinearLayout>

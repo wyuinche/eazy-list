@@ -4,7 +4,11 @@
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_300">#FF8977AD</color>
     <color name="purple_400">#FF8B00FF</color>
-    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_500">#FF4B0082</color>
+    <color name="purple_700">#FF9932CC</color>
+
+    <color name="pink_200">#FFFFC0CB</color>
+    <color name="pink_400">#FFFF3399</color>
 
     <color name="purple_100_trans">#66DDCCFF</color>
     <color name="purple_400_trans">#668B00FF</color>
@@ -21,19 +25,20 @@
     <color name="gray_300">#FFA9A9A9</color>
     <color name="gray_400">#FF808080</color>
     <color name="gray_500">#FF6F6C61</color>
+    <color name="gray_600">#FF696969</color>
     <color name="gray_700">#FF272623</color>
 
     <color name="gray_100_trans">#66D3D3D3</color>
     <color name="gray_400_trans">#66808080</color>
 
-    <color name="blue_100">#FF4682B4</color>
-    <color name="blue_200">#FF006CB7</color>
-    <color name="blue_300">#FF5E7E9B</color>
-    <color name="blue_400">#FF0080FF</color>
-    <color name="blue_500">#FF0067A3</color>
-    <color name="blue_700">#FF00498C</color>
+    <color name="mid_blue_100">#FFB0E0E6</color>
+    <color name="mid_blue_200">#FF00BFFF</color>
+    <color name="mid_blue_300">#FF3366FF</color>
+    <color name="mid_blue_400">#FF0000CD</color>
+    <color name="mid_blue_500">#FF00008B</color>
+    <color name="mid_blue_700">#FF191970</color>
 
-    <color name="blue_100_trans">#664682B4</color>
-    <color name="blue_400_trans">#660080FF</color>
+    <color name="mid_blue_200_trans">#333366FF</color>
+    <color name="mid_blue_400_trans">#660000CD</color>
 
 </resources>

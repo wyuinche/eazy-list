@@ -267,7 +267,7 @@ public class DayFragment extends Fragment implements DateController {
     @Override
     public void backToday(){
         curDay = Calendar.getInstance();
-        setDateTitle(curDay);
+        changeDate(Calendar.DATE, 0);
     }
 
     @Override

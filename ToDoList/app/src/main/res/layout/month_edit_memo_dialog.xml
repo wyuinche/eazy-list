@@ -17,8 +17,7 @@
         android:scrollHorizontally="false"
         android:textSize="@dimen/text_size_medium"
         android:inputType="textImeMultiLine"
-        android:hint="@string/memo_edit_hint"
-        android:textColor="?attr/colorControlNormal"/>
+        android:hint="@string/memo_edit_hint"/>
 
     <TextView
         android:id="@+id/month_edit_memo_control_textView"

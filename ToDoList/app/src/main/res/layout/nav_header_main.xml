@@ -13,5 +13,5 @@
         android:layout_height="wrap_content"
         android:text="@string/app_name"
         android:textSize="@dimen/text_size_large"
-        android:textColor="?attr/colorOnPrimary"/>
+        android:textColor="@color/white"/>
 </LinearLayout>
