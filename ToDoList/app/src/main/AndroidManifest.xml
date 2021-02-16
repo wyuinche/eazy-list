@@ -9,8 +9,18 @@
         android:roundIcon="@drawable/ic_app_icon"
         android:supportsRtl="true"
         android:theme="@style/PurpleTheme">
-        <activity android:name=".HelpActivity"></activity>
-        <activity android:name=".SettingActivity" />
+
+        <receiver android:name=".DailyWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/daily_widget_info" />
+        </receiver>
+
+        <activity android:name=".HelpActivity" />
         <activity android:name=".PayActivity" />
         <activity
             android:name=".MainActivity"

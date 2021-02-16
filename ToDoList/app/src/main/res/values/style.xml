@@ -32,6 +32,7 @@
         <item name="colorControlActivated">@color/gray_700</item>
         <item name="colorControlHighlight">@color/pink_200</item>
 
+
         <item name="android:colorControlNormal">@color/purple_200</item>
         <item name="android:colorControlActivated">@color/purple_500</item>
         <item name="android:colorControlHighlight">@color/purple_700</item>

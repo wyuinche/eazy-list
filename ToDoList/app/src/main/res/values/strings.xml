@@ -5,30 +5,37 @@
 
     <string name="menu_pay">Remove Ads</string>
     <string name="menu_reset">Reset</string>
-    <string name="menu_set">Setting</string>
+    <string name="menu_set">Change Theme</string>
     <string name="menu_help">Help</string>
 
     <string name="activity_title_pay">Remove Ads</string>
-    <string name="activity_title_set">Setting</string>
     <string name="activity_title_help">Usage</string>
 
     <string name="set_theme">Change Theme</string>
     <string name="theme_purple">PURPLE</string>
     <string name="theme_blue">BLUE</string>
     <string name="theme_dark">DARK</string>
+    <string name="set_ok">done</string>
+    <string name="set_cancel">cancel</string>
 
     <string name="reset_title">Delete All Items</string>
     <string name="reset_yes">yes</string>
     <string name="reset_no">no</string>
 
-    <string name="tab_day">day</string>
-    <string name="tab_week">week</string>
-    <string name="tab_month">month</string>
+    <string name="tab_day">DAY</string>
+    <string name="tab_week">WEEK</string>
+    <string name="tab_month">MONTH</string>
 
     <string name="item_add_title">New Item</string>
     <string name="item_add_ok">add</string>
     <string name="item_add_cancel">cancel</string>
     <string name="item_add_hint">enter...</string>
+
+    <string name="item_task_title">Select Task</string>
+    <string name="item_task_copy">Copy</string>
+    <string name="item_task_delete">Delete</string>
+    <string name="item_task_modify">Modify</string>
+    <string name="item_task_copy_done">Copied To Clip Board</string>
 
     <string name="memo_view_title">memo</string>
     <string name="memo_edit_hint">enter...</string>
@@ -47,5 +54,7 @@
     <string name="Null">Null</string>
 
     <string name="help_content_1">hello</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 
 </resources>

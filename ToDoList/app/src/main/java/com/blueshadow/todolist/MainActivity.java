@@ -7,7 +7,10 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 
 import com.blueshadow.todolist.ui.day.DayFragment;
 import com.blueshadow.todolist.ui.month.MonthFragment;
@@ -174,9 +177,7 @@ public class MainActivity extends AppCompatActivity
             startActivityForResult(intent, REQUEST_CODE_PAY);
         }
         else if(id == R.id.nav_set){
-            Intent intent = new Intent(this, SettingActivity.class);
-            intent.putExtra(THEME_PREF_NAME, curTheme);
-            startActivityForResult(intent, REQUEST_CODE_SETTING);
+            changeAppTheme();
         }
         else if(id == R.id.nav_help){
             Intent intent = new Intent(this, HelpActivity.class);
@@ -184,6 +185,50 @@ public class MainActivity extends AppCompatActivity
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void changeAppTheme(){
+        LayoutInflater inflater = LayoutInflater.from(this);
+        LinearLayout dialogLayout = (LinearLayout) inflater.inflate(R.layout.change_theme_dialog, null);
+
+        RadioGroup radioGroup = dialogLayout.findViewById(R.id.change_theme_radio);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle(R.string.set_theme);
+        builder.setView(dialogLayout);
+        builder.setPositiveButton(getString(R.string.set_ok),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch(radioGroup.getCheckedRadioButtonId()){
+                            case R.id.change_theme_blue:
+                                saveAppTheme(THEME_BLUE);
+                                break;
+                            case R.id.change_theme_dark:
+                                saveAppTheme(THEME_BLACK);
+                                break;
+                            case R.id.change_theme_purple:
+                            default:
+                                saveAppTheme(THEME_PURPLE);
+                                break;
+                        }
+                        dialog.dismiss();
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+        builder.setNegativeButton(getString(R.string.set_cancel),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        builder.setCancelable(true);
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void askReset(){
@@ -404,14 +449,6 @@ public class MainActivity extends AppCompatActivity
         switch(requestCode){
             case REQUEST_CODE_PAY:
                 break;
-            case REQUEST_CODE_SETTING:
-                if(resultCode == RESULT_OK){
-                    int theme = data.getIntExtra(THEME_PREF_NAME, -1);
-                    saveAppTheme(theme);
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
         }
     }
 }

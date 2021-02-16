@@ -1,6 +1,8 @@
 package com.blueshadow.todolist.ui.week;
 
 import android.app.AlertDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Paint;
@@ -15,16 +17,19 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blueshadow.todolist.DateController;
 import com.blueshadow.todolist.OnItemAndDateChangedListener;
 import com.blueshadow.todolist.R;
 import com.blueshadow.todolist.ToDoItem;
+import com.blueshadow.todolist.ui.day.DayItemCard;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -202,10 +207,7 @@ public class WeekFragment extends Fragment implements DateController {
         AdapterView.OnItemLongClickListener listViewItemLongClickListener = new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                listener.onItemDelete(((WeekItemCard)(((WeekItemCardAdapter) parent.getAdapter()).getItem(position)))
-                        .getItem().get_id());
-                ((WeekItemCardAdapter) parent.getAdapter()).removeItem(position);
-                ((WeekItemCardAdapter) parent.getAdapter()).notifyDataSetChanged();
+                startTaskForItem((WeekItemCardAdapter) parent.getAdapter(), position);
                 return true;
             }
         };
@@ -268,6 +270,93 @@ public class WeekFragment extends Fragment implements DateController {
             listViews[i].setOnItemClickListener(listViewItemClickListener);
             dayAddLayouts[i].setOnClickListener(addTaskClickListener);
         }
+    }
+
+    private void startTaskForItem(WeekItemCardAdapter targetAdapter, int position){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+        builder.setTitle(getString(R.string.item_task_title));
+        builder.setPositiveButton(getString(R.string.item_task_copy),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String memo = ((WeekItemCard) targetAdapter.getItem(position)).getItem().getMemo();
+
+                        ClipboardManager clipManager =
+                                (ClipboardManager) getContext().getSystemService(getContext().CLIPBOARD_SERVICE);
+                        ClipData data = ClipData.newPlainText("label", memo);
+
+                        clipManager.setPrimaryClip(data);
+                        Toast.makeText(getContext(),  getString(R.string.item_task_copy_done), Toast.LENGTH_SHORT).show();
+
+                        dialog.dismiss();
+                    }
+                });
+        builder.setNeutralButton(getString(R.string.item_task_modify),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        modifyItem(targetAdapter, position);
+                        dialog.dismiss();
+                    }
+                });
+        builder.setNegativeButton(getString(R.string.item_task_delete),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        listener.onItemDelete(((WeekItemCard)targetAdapter.getItem(position)).getItem().get_id());
+                        targetAdapter.removeItem(position);
+                        targetAdapter.notifyDataSetChanged();
+                        dialog.dismiss();
+                    }
+                });
+
+        builder.setCancelable(true);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void modifyItem(WeekItemCardAdapter targetAdapter, int position){
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        LinearLayout dialogLayout = (LinearLayout) inflater.inflate(R.layout.month_add_task_dialog, null);
+
+        DatePicker datePicker = dialogLayout.findViewById(R.id.month_add_task_datePicker);
+        EditText editText = dialogLayout.findViewById(R.id.month_add_task_editText);
+        editText.setText(((WeekItemCard) targetAdapter.getItem(position)).getItem().getMemo());
+
+        datePicker.setSpinnersShown(true);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setView(dialogLayout);
+        builder.setTitle(getString(R.string.item_add_title));
+        builder.setPositiveButton(getString(R.string.item_add_ok),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String memo = editText.getText().toString();
+                        Calendar selectedCal =  Calendar.getInstance();
+                        selectedCal.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
+                        int itemId;
+                        itemId = listener.onItemInsert(selectedCal, memo);
+                        if (itemId == -1) {
+                            return;
+                        }
+                        listener.onItemDelete(((WeekItemCard) targetAdapter.getItem(position)).getItem().get_id());
+                        targetAdapter.notifyDataSetChanged();
+                        changeDate(Calendar.DATE, 0);
+                        dialog.dismiss();
+                    }
+                });
+        builder.setNegativeButton(getString(R.string.item_add_cancel),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        builder.setCancelable(true);
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     @Override
