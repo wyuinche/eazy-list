@@ -1,6 +1,8 @@
 package com.blueshadow.todolist;
 
 import android.app.AlertDialog;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -36,7 +38,6 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnItemAndDateChangedListener {
     final public static int REQUEST_CODE_PAY = 101;
-    final public static int REQUEST_CODE_SETTING = 102;
     final public static int REQUEST_CODE_HELP = 103;
 
     final public static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy / MM / dd");

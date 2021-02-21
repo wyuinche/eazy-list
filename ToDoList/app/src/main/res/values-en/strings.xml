@@ -37,6 +37,9 @@
     <string name="item_task_modify">Modify</string>
     <string name="item_task_copy_done">Copied To Clip Board</string>
 
+    <string name="item_done">done</string>
+    <string name="item_cancel">cancel</string>
+
     <string name="memo_view_title">memo</string>
     <string name="memo_edit_hint">enter...</string>
     <string name="memo_edit_title">Edit Memo</string>

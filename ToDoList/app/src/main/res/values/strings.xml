@@ -32,10 +32,13 @@
     <string name="item_add_hint">enter...</string>
 
     <string name="item_task_title">Select Task</string>
-    <string name="item_task_copy">Copy</string>
-    <string name="item_task_delete">Delete</string>
-    <string name="item_task_modify">Modify</string>
+    <string name="item_task_copy">copy</string>
+    <string name="item_task_delete">delete</string>
+    <string name="item_task_modify">modify</string>
     <string name="item_task_copy_done">Copied To Clip Board</string>
+
+    <string name="item_done">done</string>
+    <string name="item_cancel">cancel</string>
 
     <string name="memo_view_title">memo</string>
     <string name="memo_edit_hint">enter...</string>
@@ -54,7 +57,4 @@
     <string name="Null">Null</string>
 
     <string name="help_content_1">hello</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
-
 </resources>

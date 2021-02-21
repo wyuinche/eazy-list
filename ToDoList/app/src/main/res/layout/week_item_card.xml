@@ -15,5 +15,6 @@
         android:gravity="center"
         android:maxLines="2"
         android:background="@drawable/week_day_item_box"
+        android:foreground="?attr/selectableItemBackground"
         android:textColor="?attr/colorControlActivated"/>
 </LinearLayout>

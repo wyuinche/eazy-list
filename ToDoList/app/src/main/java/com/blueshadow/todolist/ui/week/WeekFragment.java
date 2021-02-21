@@ -292,7 +292,7 @@ public class WeekFragment extends Fragment implements DateController {
                         dialog.dismiss();
                     }
                 });
-        builder.setNeutralButton(getString(R.string.item_task_modify),
+        builder.setNegativeButton(getString(R.string.item_task_modify),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -300,13 +300,14 @@ public class WeekFragment extends Fragment implements DateController {
                         dialog.dismiss();
                     }
                 });
-        builder.setNegativeButton(getString(R.string.item_task_delete),
+        builder.setNeutralButton(getString(R.string.item_task_delete),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         listener.onItemDelete(((WeekItemCard)targetAdapter.getItem(position)).getItem().get_id());
                         targetAdapter.removeItem(position);
                         targetAdapter.notifyDataSetChanged();
+
                         dialog.dismiss();
                     }
                 });
@@ -328,8 +329,8 @@ public class WeekFragment extends Fragment implements DateController {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setView(dialogLayout);
-        builder.setTitle(getString(R.string.item_add_title));
-        builder.setPositiveButton(getString(R.string.item_add_ok),
+        builder.setTitle(getString(R.string.item_task_modify));
+        builder.setPositiveButton(getString(R.string.item_done),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -347,7 +348,7 @@ public class WeekFragment extends Fragment implements DateController {
                         dialog.dismiss();
                     }
                 });
-        builder.setNegativeButton(getString(R.string.item_add_cancel),
+        builder.setNegativeButton(getString(R.string.item_cancel),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

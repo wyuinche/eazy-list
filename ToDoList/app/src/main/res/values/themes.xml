@@ -1,6 +1,0 @@
-<resources>
-    <style name="ThemeOverlay.ToDoList.AppWidgetContainer" parent="">
-        <item name="appWidgetBackgroundColor">@color/gray_700</item>
-        <item name="appWidgetTextColor">@color/white</item>
-    </style>
-</resources>
