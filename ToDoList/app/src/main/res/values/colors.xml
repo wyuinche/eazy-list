@@ -14,6 +14,7 @@
     <color name="purple_400_trans">#668B00FF</color>
 
     <color name="white">#FFFFFFFF</color>
+    <color name="white_trans">#55FFFFFF</color>
     <color name="beige">#FFFFFFF0</color>
     <color name="red">#FFDB4455</color>
     <color name="carrot">#FF985C</color>

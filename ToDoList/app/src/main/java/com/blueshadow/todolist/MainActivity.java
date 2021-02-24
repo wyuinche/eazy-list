@@ -1,27 +1,27 @@
 package com.blueshadow.todolist;
 
 import android.app.AlertDialog;
-import android.appwidget.AppWidgetManager;
-import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.blueshadow.todolist.ui.day.DayFragment;
 import com.blueshadow.todolist.ui.month.MonthFragment;
 import com.blueshadow.todolist.ui.week.WeekFragment;
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
@@ -37,7 +37,7 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnItemAndDateChangedListener {
-    final public static int REQUEST_CODE_PAY = 101;
+    final public static int REQUEST_CODE_OSS = 102;
     final public static int REQUEST_CODE_HELP = 103;
 
     final public static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy / MM / dd");
@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity
     DrawerLayout drawer;
     Toolbar toolbar;
     BottomNavigationView tab;
+    TextView ossTextView;
 
     Fragment dayFragment;
     Fragment weekFragment;
@@ -173,16 +174,15 @@ public class MainActivity extends AppCompatActivity
         if(id == R.id.nav_reset){
             askReset();
         }
-        else if(id == R.id.nav_pay){
-            Intent intent = new Intent(this, PayActivity.class);
-            startActivityForResult(intent, REQUEST_CODE_PAY);
-        }
         else if(id == R.id.nav_set){
             changeAppTheme();
         }
         else if(id == R.id.nav_help){
-            Intent intent = new Intent(this, HelpActivity.class);
-            startActivityForResult(intent, REQUEST_CODE_HELP);
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.help)));
+            startActivity(intent);
+        }
+        else if(id == R.id.nav_oss){
+            startActivity(new Intent(this, OssLicensesMenuActivity.class));
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -443,13 +443,4 @@ public class MainActivity extends AppCompatActivity
         return tmp;
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        switch(requestCode){
-            case REQUEST_CODE_PAY:
-                break;
-        }
-    }
 }

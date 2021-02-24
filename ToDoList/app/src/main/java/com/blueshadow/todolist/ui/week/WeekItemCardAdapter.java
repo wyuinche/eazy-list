@@ -6,12 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.blueshadow.todolist.R;
-import com.blueshadow.todolist.ToDoItem;
 
 import java.util.ArrayList;
 

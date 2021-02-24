@@ -56,5 +56,8 @@
     <string name="saturday">SAT</string>
     <string name="Null">Null</string>
 
-    <string name="help_content_1">hello</string>
+    <string name="help">https://github.com/wyuinche/eazy-list/blob/main/README.md</string>
+
+    <string name="OSS">Open Source License</string>
+
 </resources>

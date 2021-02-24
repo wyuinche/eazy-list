@@ -5,38 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/beige"
-    android:orientation="vertical"
     tools:context=".HelpActivity">
 
-    <TextView
-        android:id="@+id/help_title"
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/help_viewPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/layout_margin"
-        android:gravity="top|center_horizontal"
-        android:padding="@dimen/text_padding_big"
-        android:text="@string/activity_title_help"
-        android:textColor="@color/gray_700"
-        android:textSize="@dimen/text_size_big"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/help_contents"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/layout_margin"
-        android:padding="@dimen/text_padding_small"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size_medium" />
-
-    <ImageView
-        android:id="@+id/help_nextButton"
-        android:layout_width="@dimen/fab_size"
-        android:layout_height="@dimen/fab_size"
-        android:layout_margin="@dimen/fab_margin"
-        android:scaleType="centerInside"
-        android:layout_gravity="right|bottom"
-        android:src="@drawable/ic_next_off"/>
-
+        android:layout_height="match_parent" />
 </FrameLayout>
