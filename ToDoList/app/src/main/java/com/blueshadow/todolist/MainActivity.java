@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity
     DrawerLayout drawer;
     Toolbar toolbar;
     BottomNavigationView tab;
-    TextView ossTextView;
 
     Fragment dayFragment;
     Fragment weekFragment;
