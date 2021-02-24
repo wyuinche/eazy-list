@@ -6,7 +6,7 @@
     <string name="menu_pay">Remove Ads</string>
     <string name="menu_reset">Reset</string>
     <string name="menu_set">Change Theme</string>
-    <string name="menu_help">Help</string>
+    <string name="menu_help">Help / Code</string>
 
     <string name="activity_title_pay">Remove Ads</string>
     <string name="activity_title_help">Usage</string>
