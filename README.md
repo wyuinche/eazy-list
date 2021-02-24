@@ -14,6 +14,7 @@
 - You can go to the [last/next] [day/week/month] by pressing [left/right] button. Add new schedule by pressing "+" button(in Daily and Monthly Page).
 <br>
 <br>
+
 ### 2. 위클리 리스트에서 일정 추가 (Add Schedule in Weekly Page)
 <br>
 <img src = "./image/help_2.jpg" width="35%">
@@ -22,7 +23,8 @@
 - If you want to add a new schedule, tap the text at the top of the day.
 <br>
 <br>
-3. 몬슬리 리스트 (In Monthly Page)
+
+### 3. 몬슬리 리스트 (In Monthly Page)
 <br>
 <img src = "./image/help_3.jpg" width="35%">
 <br>
@@ -33,7 +35,8 @@
 - If you want to edit the note, you have to press the text part at the top, not the body part of the notepad.
 <br>
 <br>
-4. 일정 박스 (Event Box)
+
+### 4. 일정 박스 (Event Box)
 <br>
 <img src = "./image/help_5.jpg" width="35%">
 <br>
@@ -46,7 +49,8 @@
 - If you long-click each item, you can copy the contents of the schedule to the clipboard or delete/edit the schedule.
 <br>
 <br>
-5. 네비게이션 서랍 (Navigation Drawer)
+
+### 5. 네비게이션 서랍 (Navigation Drawer)
 <br>
 <img src = "./image/help_7.jpg" width="35%">
 <br>
