@@ -1,7 +1,7 @@
 ## eazy-list
 
 - Android To-Do List Application
-- able to see all OSS Libraries used in the app
+- able to see all used OSS Libraries in the application
 
 ------------------------------------------------
 
