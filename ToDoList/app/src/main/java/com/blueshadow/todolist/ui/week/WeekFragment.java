@@ -454,6 +454,7 @@ public class WeekFragment extends Fragment implements DateController {
 
     private Calendar getSelectedCal(int wd){
         Calendar tmpCal = Calendar.getInstance();
+        tmpCal.set(curDay.get(Calendar.YEAR), curDay.get(Calendar.MONTH), curDay.get(Calendar.DATE));
         tmpCal.add(Calendar.DATE, wd - curDay.get(Calendar.DAY_OF_WEEK) + 1);
         return tmpCal;
     }

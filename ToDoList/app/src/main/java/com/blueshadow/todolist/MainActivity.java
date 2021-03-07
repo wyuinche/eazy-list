@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import com.blueshadow.todolist.ui.day.DayFragment;
 import com.blueshadow.todolist.ui.month.MonthFragment;
